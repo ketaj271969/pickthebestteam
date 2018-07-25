@@ -1,0 +1,14 @@
+07/25/2018 -- Wednesday
+
+Reference:
+http://kbroman.org/github_tutorial/pages/init.html
+
+1. made sure composer was up-to-date and created project "pickthebestteam"
+
+	composer self-update
+	composer create-project --prefer-dist laravel/laravel pickthebestteam
+
+
+2. Updated hosts and httpd-vhosts.conf with pickthebestteam.tst URL
+
+3.  
