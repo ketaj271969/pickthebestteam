@@ -11,4 +11,11 @@ http://kbroman.org/github_tutorial/pages/init.html
 
 2. Updated hosts and httpd-vhosts.conf with pickthebestteam.tst URL
 
-3.  
+3. Confirmed site was working by hitting http://pickthebestteam.tst
+
+3. Ran these git commands:
+	git init (initialize new repository in pickthebestteam folder)
+	git add .
+	git commit -m "Added initial files for pickthebestteam"
+	
+4. Ran steps for "Connect it to github" from the reference link above
