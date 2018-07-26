@@ -19,3 +19,9 @@ http://kbroman.org/github_tutorial/pages/init.html
 	git commit -m "Added initial files for pickthebestteam"
 	
 4. Ran steps for "Connect it to github" from the reference link above
+
+
+
+**********************************************************
+Version 1.0 from Toby
+**********************************************************
