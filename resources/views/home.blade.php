@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in!
+                    <br>
+                       <li><a href="{{ url('/admin/cities')}}">Cities List</a></li>
                 </div>
             </div>
         </div>
