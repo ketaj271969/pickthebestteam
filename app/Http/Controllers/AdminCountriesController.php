@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\PtbtCity;
-use App\PtbtRegion;
 use Illuminate\Http\Request;
+use App\PtbtCountry;
+use Illuminate\Support\Facades\Input;
 
-class AdminCitiesController extends Controller
+class AdminCountriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,27 @@ class AdminCitiesController extends Controller
      */
     public function index()
     {
-        //
+        //$regions = DB::table('ptbtregion')->get();
+        $countries = PtbtCountry::all();
         
-        $cities = PtbtCity::all();
-        
-        return view('/admin/cities/index', compact('cities'));
+        //return view('region.index', ['regions' => $regions]);
+        return view('country.index', compact('countries'));
+       // return view('city.create', compact('countries'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findCountryName()
+    {
+        //
+        $data=PtbtCountry::select('PTBTCountryName','id')->where('PTBTRegionId',
+            $request->id)->take(100)->get();
+            return response()->json($data);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -30,10 +44,6 @@ class AdminCitiesController extends Controller
     public function create()
     {
         //
-        
-        $regions = PtbtRegion::all();
-        
-        return view('/admin/cities/create', compact('regions'));
     }
 
     /**
@@ -67,8 +77,6 @@ class AdminCitiesController extends Controller
     public function edit($id)
     {
         //
-        $cities = PtbtCity::findOrFail($id);
-        return view('/admin/cities/edit', compact('cities'));
     }
 
     /**
@@ -92,5 +100,15 @@ class AdminCitiesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function ptbtcountry()
+    {
+        //$provinces_id = Input::get('province_id');
+        //$regencies = Regencies::where('province_id', '=', $provinces_id)->get();
+        //return response()->json($regencies);
+        $ptbtregion_id = Input::get('PTBTRegionId');
+        $countries = ptbtcountry::where('PTBTRegionId', '=', $ptbtregion_id)->get();
+        return response()->json($countries);
     }
 }
