@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\PtbtCity;
-use App\PtbtRegion;
+use App\PtbtStProv;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
-class AdminCitiesController extends Controller
+
+class AdminStProvsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,6 @@ class AdminCitiesController extends Controller
     public function index()
     {
         //
-        
-        $cities = PtbtCity::all();
-        
-        return view('/admin/cities/index', compact('cities'));
     }
 
     /**
@@ -30,10 +27,6 @@ class AdminCitiesController extends Controller
     public function create()
     {
         //
-        
-        $regions = PtbtRegion::all();
-        
-        return view('/admin/cities/create', compact('regions'));
     }
 
     /**
@@ -45,8 +38,6 @@ class AdminCitiesController extends Controller
     public function store(Request $request)
     {
         //
-        PtbtCity::create($request->all());
-        return redirect('/admin/cities.');
     }
 
     /**
@@ -58,8 +49,6 @@ class AdminCitiesController extends Controller
     public function show($id)
     {
         //
-        $cities = PtbtCity::findOrFail($id);
-        return view('city.show', compact('cities'));
     }
 
     /**
@@ -71,8 +60,6 @@ class AdminCitiesController extends Controller
     public function edit($id)
     {
         //
-        $cities = PtbtCity::findOrFail($id);
-        return view('/admin/cities/edit', compact('cities'));
     }
 
     /**
@@ -85,9 +72,6 @@ class AdminCitiesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $cities = PtbtCity::findOrFail($id);
-        $cities->update($request->all());
-        return redirect('/admin/cities');
     }
 
     /**
@@ -99,7 +83,14 @@ class AdminCitiesController extends Controller
     public function destroy($id)
     {
         //
-        $cities = PtbtCity::whereId($id)->delete();
-        return redirect('/admin/cities');
     }
+    
+    public function ptbtstprov()
+    
+    {
+        $ptbtcountry_id = Input::get('PTBTCountryId');
+        $ptbtstprov = ptbtstprov::where('PTBTCountryId', '=', $ptbtcountry_id)->get();
+        return response()->json($ptbtstprov);
+    }
+    
 }
