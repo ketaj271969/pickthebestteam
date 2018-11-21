@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PtbtVenue;
+use App\PtbtRegion;
 use Illuminate\Http\Request;
 
 class AdminVenueController extends Controller
@@ -29,8 +30,9 @@ class AdminVenueController extends Controller
     {
         //
         $venues = PtbtVenue::all();
+        $regions = PtbtRegion::all();
 
-        return view('/admin/venues/create', compact('venues'));
+        return view('/admin/venues/create', compact('venues','regions'));
     }
 
     /**
@@ -42,6 +44,9 @@ class AdminVenueController extends Controller
     public function store(Request $request)
     {
         //
+        PtbtVenue::create($request->all());
+        return redirect('/admin/venues');
+        //return "it works";
     }
 
     /**
@@ -89,5 +94,7 @@ class AdminVenueController extends Controller
     public function destroy($id)
     {
         //
+        $venues = PtbtVenue::whereId($id)->delete();
+        return redirect('/admin/venues');
     }
 }

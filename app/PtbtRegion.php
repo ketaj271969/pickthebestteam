@@ -11,6 +11,12 @@ class PtbtRegion extends Model
         'PTBTRegionCode',
         'PTBTRegionName'
     ];
-    
-    protected $table='ptbtregion';
+
+    protected $table = 'ptbtregion';
+
+    // use this tinker command to test this $PtbtFindRegion = App\PtbtRegion::find(3)->PtbtCountries;
+    public function PtbtCountries()
+    {
+        return $this->hasMany('App\PtbtCountry', 'PtbtRegionId', 'id');
+    }
 }

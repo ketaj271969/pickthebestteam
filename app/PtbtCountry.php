@@ -15,4 +15,15 @@ class PtbtCountry extends Model
     ];
     
     protected $table='ptbtcountry';
+
+    public function PtbtRegion()
+    {
+        return $this->belongsTo(PtbtRegion::class);
+    }
+
+    // use this tinker command $PtbtFindRegion = App\PtbtCountry::find(155)->PtbtStProv;
+    public function PtbtStProv()
+    {
+        return $this->hasMany('App\PtbtStProv', 'PtbtCountryId', 'id');
+    }
 }
