@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PtbtCity;
 use App\PtbtRegion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class AdminCitiesController extends Controller
 {
@@ -34,6 +35,7 @@ class AdminCitiesController extends Controller
         $regions = PtbtRegion::all();
         
         return view('/admin/cities/create', compact('regions'));
+        //return "itworks";
     }
 
     /**
@@ -46,7 +48,8 @@ class AdminCitiesController extends Controller
     {
         //
         PtbtCity::create($request->all());
-        return redirect('/admin/cities.');
+        return redirect('/admin/cities');
+        //return "it works";
     }
 
     /**
@@ -101,5 +104,13 @@ class AdminCitiesController extends Controller
         //
         $cities = PtbtCity::whereId($id)->delete();
         return redirect('/admin/cities');
+    }
+
+    public function ptbtcity()
+
+    {
+        $ptbtstprov_id = Input::get('PTBTStProvId');
+        $ptbtcity = ptbtcity::where('PTBTStProvId', '=', $ptbtstprov_id)->get();
+        return response()->json($ptbtcity);
     }
 }

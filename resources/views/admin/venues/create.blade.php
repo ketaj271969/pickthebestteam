@@ -1,7 +1,7 @@
 @extends('layouts.app') @section('content')
 <body>
 	<h1>Create Venue</h1>
-	<form method="post" action="/venues">
+	<form method="post" action="/admin/venues">
 		{{ csrf_field() }} <br>
 
 		<div class="form-group">
@@ -29,9 +29,19 @@
 					Province initial ===</option>
 			</select>
 		</div>
-		<br> 
-			 
-			<input type="text" name="PTBTLocationNote" placeholder="Enter Venue Notes">
+		<br>
+		<div class="form-group">
+			<label for="">City</label> <select class="form-control"
+														 name="PTBTCityId" id="ptbtcity">
+				<option value="0" disable="true" selected="true">=== Select City ===</option>
+			</select>
+		</div>
+		<br>
+
+		<input type="text" name="PTBTVenueName" placeholder="Enter Venue Name">
+		<input type="text" name="PTBTAddress" placeholder="Enter Venue Address">
+		<input type="integer" name="PTBTZip" placeholder="Enter Venue Zip">
+		<input type="text" name="PTBTLocationNote" placeholder="Enter Location Note">
 			<input type="submit" name="submit">
 
 	</form>
@@ -53,8 +63,8 @@
           $('#ptbtstprov').empty();
           $('#ptbtstprov').append('<option value="0" disable="true" selected="true">=== Select State/Province empty 1 ===</option>');
 
-          $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">=== Select Villages ===</option>');
+          $('#ptbtcity').empty();
+          $('#ptbtcity').append('<option value="0" disable="true" selected="true">=== Select City 1 ===</option>');
 
           $.each(data, function(index, ptbtcountryObj){
             $('#ptbtcountry').append('<option value="'+ ptbtcountryObj.id +'">'+ ptbtcountryObj.PTBTCountryName +'</option>');
@@ -82,7 +92,7 @@
         $.get('/json-ptbtcity?PTBTStProvId=' + PTBTStProvId,function(data) {
           console.log(data);
           $('#ptbtcity').empty();
-          $('#ptbtcity').append('<option value="0" disable="true" selected="true">=== Select Villages ===</option>');
+          $('#ptbtcity').append('<option value="0" disable="true" selected="true">=== Select City 3 ===</option>');
 
           $.each(data, function(index, cityObj){
             $('#ptbtcity').append('<option value="'+ cityObj.id +'">'+ cityObj.PTBTCity +'</option>');

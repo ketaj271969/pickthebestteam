@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Edit Venue</h1>
-<form method = "post" action="/venues/{{$venues->id}}">
+<form method = "post" action="/admin/venues/{{$venues->id}}">
 {{ csrf_field() }}
 <input type="hidden" name="_method" value="PUT">
 <input type="text" name="PTBTCityId" placeholder="Enter PTBTCityId" value="{{$venues->PTBTCityId}}">
@@ -13,7 +13,7 @@
 <input type="submit" name="submit" value="UPDATE">
 
 </form>
-<form method="post" action="/venues/{{$venues->id}}">
+<form method="post" action="/admin/venues/{{$venues->id}}">
 {{ csrf_field() }}
 <input type = "hidden" name="_method" value="DELETE">
 <input type = "submit" value="DELETE">
