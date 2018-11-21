@@ -61,6 +61,8 @@ class AdminCitiesController extends Controller
     public function show($id)
     {
         //
+        $cities = PtbtCity::findOrFail($id);
+        return view('city.show', compact('cities'));
     }
 
     /**

@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/venues', 'AdminVenueController');
 Route::resource('admin/cities', 'AdminCitiesController');
-
+Route::resource('admin/countries', 'AdminCountriesController');
+Route::resource('admin/regions', 'AdminRegionsController');
 Route::get('/json-ptbtcountry','AdminCountriesController@ptbtcountry');
 Route::get('/json-ptbtstprov', 'AdminStProvsController@ptbtstprov');
 Route::get('/json-ptbtcity', 'AdminCitiesController@ptbtcity');
