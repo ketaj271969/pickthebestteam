@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\PtbtVenue;
-use App\PtbtRegion;
+use App\PtbtStProv;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
-class AdminVenueController extends Controller
+
+class AdminStProvsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,6 @@ class AdminVenueController extends Controller
     public function index()
     {
         //
-        $venues = PtbtVenue::all();
-
-        return view('/admin/venues/index', compact('venues'));
     }
 
     /**
@@ -29,10 +27,6 @@ class AdminVenueController extends Controller
     public function create()
     {
         //
-        $venues = PtbtVenue::all();
-        $regions = PtbtRegion::all();
-
-        return view('/admin/venues/create', compact('venues','regions'));
     }
 
     /**
@@ -44,9 +38,6 @@ class AdminVenueController extends Controller
     public function store(Request $request)
     {
         //
-        PtbtVenue::create($request->all());
-        return redirect('/admin/venues');
-        //return "it works";
     }
 
     /**
@@ -69,8 +60,6 @@ class AdminVenueController extends Controller
     public function edit($id)
     {
         //
-        $venues = PtbtVenue::findOrFail($id);
-        return view('/admin/venues/edit', compact('venues'));
     }
 
     /**
@@ -94,7 +83,14 @@ class AdminVenueController extends Controller
     public function destroy($id)
     {
         //
-        $venues = PtbtVenue::whereId($id)->delete();
-        return redirect('/admin/venues');
     }
+    
+    public function ptbtstprov()
+    
+    {
+        $ptbtcountry_id = Input::get('PTBTCountryId');
+        $ptbtstprov = ptbtstprov::where('PTBTCountryId', '=', $ptbtcountry_id)->get();
+        return response()->json($ptbtstprov);
+    }
+    
 }
