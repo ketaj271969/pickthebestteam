@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2018 at 06:52 PM
+-- Generation Time: Nov 25, 2018 at 10:02 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -21,30 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `pickthebestteam`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `country_state_city`
---
-
-CREATE TABLE `country_state_city` (
-  `id` int(11) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `country_state_city`
---
-
-INSERT INTO `country_state_city` (`id`, `country`, `state`, `city`) VALUES
-(1, 'United States', 'IL', 'Chicago'),
-(2, 'United States', 'IL', 'Buffalo Grove'),
-(3, 'Canada', 'Ontario', 'Toronto'),
-(4, 'Canada', 'Ontario', 'Ottawa'),
-(5, 'Mexico', 'Puebla Estado', 'Mexico City');
 
 -- --------------------------------------------------------
 
@@ -93,18 +69,20 @@ CREATE TABLE `ptbtcity` (
 --
 
 INSERT INTO `ptbtcity` (`id`, `PTBTRegionId`, `PTBTCountryId`, `PTBTStProvId`, `PTBTCity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(8, 1, 155, 5841, 'Libertyville2', '2018-06-10 07:00:00', '2018-07-05 17:59:49', NULL),
-(9, 1, 155, 5841, 'Chicago2', '2018-06-10 06:00:00', '2018-06-20 04:48:04', NULL),
-(11, 1, 155, 5841, 'Dundee2', '2018-06-13 01:16:47', '2018-06-20 04:48:10', NULL),
-(14, 1, 155, 5841, 'Crystal Lake2', '2018-06-14 16:24:07', '2018-06-21 03:07:31', NULL),
+(8, 1, 155, 5841, 'Libertyville', '2018-06-10 07:00:00', '2018-11-26 01:52:52', NULL),
+(9, 1, 155, 5841, 'Chicago', '2018-06-10 06:00:00', '2018-11-25 23:43:16', NULL),
+(11, 1, 155, 5841, 'Dundee', '2018-06-13 01:16:47', '2018-11-26 01:52:58', NULL),
+(14, 1, 155, 5841, 'Crystal Lake', '2018-06-14 16:24:07', '2018-11-26 01:53:03', NULL),
 (18, 1, 155, 5841, 'Elizabeth', '2018-07-05 21:51:37', '2018-07-05 21:51:37', NULL),
-(19, 1, 155, 5843, 'Iowa City', '2018-07-10 23:20:43', '2018-07-10 23:20:43', NULL),
+(19, 1, 155, 5843, 'Iowa City', '2018-07-10 23:20:43', '2018-11-25 23:43:12', NULL),
 (21, 4, 86, 4292, 'Seeheim-Jugenheim', '2018-07-12 21:09:44', '2018-07-12 21:09:44', NULL),
 (22, 4, 86, 4295, 'Karlsruhe', '2018-08-14 20:18:42', '2018-08-14 20:18:42', NULL),
 (23, 1, 155, 5843, 'Ames', '2018-08-31 21:14:04', '2018-08-31 21:14:04', NULL),
-(24, 1, 155, 5843, 'Cedar Rapids 2', '2018-08-31 21:14:33', '2018-08-31 21:14:42', NULL),
+(24, 1, 155, 5843, 'Cedar Rapids', '2018-08-31 21:14:33', '2018-11-25 23:43:08', NULL),
 (25, 1, 155, 5843, 'audubon', '2018-09-09 22:07:06', '2018-09-09 22:07:06', NULL),
-(26, 1, 155, 5843, 'Tama', '2018-09-10 23:44:58', '2018-09-10 23:44:58', NULL);
+(26, 1, 155, 5843, 'Tama', '2018-09-10 23:44:58', '2018-09-10 23:44:58', NULL),
+(27, 1, 155, 5815, 'Bangor', '2018-11-05 00:02:04', '2018-11-05 00:02:04', NULL),
+(28, 1, 155, 5841, 'East Chicago', '2018-11-25 23:44:57', '2018-11-25 23:44:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -264,50 +242,6 @@ CREATE TABLE `ptbtevents` (
   `PTBTLosingTeam` int(11) DEFAULT NULL,
   `PTBTEventType` char(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ptbtproduct`
---
-
-CREATE TABLE `ptbtproduct` (
-  `id` int(11) NOT NULL,
-  `prodname` varchar(155) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `price` double NOT NULL,
-  `prod_cat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ptbtproduct`
---
-
-INSERT INTO `ptbtproduct` (`id`, `prodname`, `qty`, `price`, `prod_cat_id`) VALUES
-(1, 'Item A', 500, 1.5, 1),
-(2, 'Item B', 765, 1.2, 4),
-(3, 'item c', 15000, 0.5, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ptbtprod_cat`
---
-
-CREATE TABLE `ptbtprod_cat` (
-  `id` int(11) NOT NULL,
-  `product_cat_name` varchar(155) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ptbtprod_cat`
---
-
-INSERT INTO `ptbtprod_cat` (`id`, `product_cat_name`) VALUES
-(1, 'Toys'),
-(2, 'cars'),
-(3, 'computers'),
-(4, 'mobile');
 
 -- --------------------------------------------------------
 
@@ -3197,12 +3131,23 @@ CREATE TABLE `ptbtuserevaluation` (
 --
 
 CREATE TABLE `ptbtvenue` (
-  `PTBTVenueId` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `PTBTCityId` int(11) NOT NULL,
+  `PTBTVenueName` varchar(30) NOT NULL,
   `PTBTAddress` char(20) DEFAULT NULL,
   `PTBTZip` int(11) DEFAULT NULL,
-  `PTBTLocationNote` text
+  `PTBTLocationNote` text,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ptbtvenue`
+--
+
+INSERT INTO `ptbtvenue` (`id`, `PTBTCityId`, `PTBTVenueName`, `PTBTAddress`, `PTBTZip`, `PTBTLocationNote`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 9, 'Hermosa', 'Sacramento Boulevard', 60622, 'This is a note', '2018-11-22 04:46:19', '2018-11-22 04:46:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -3213,30 +3158,40 @@ CREATE TABLE `ptbtvenue` (
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middleinitial` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userrole` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eventmonitor` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` int(3) NOT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address2` int(11) NOT NULL,
+  `cityid` int(11) NOT NULL,
+  `zip` int(5) NOT NULL,
+  `regionid` int(11) NOT NULL,
+  `countryid` int(11) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `stprovid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'name', 'gmail@gmail.com', '$2y$10$OVai35V8ZwHVwhMgG0H97.Ga60cx32qDedLClFaPqhy0XUqbkttOe', 'IFXY1gZTOctNCryesCJmfh1xJ6LkONLvn7cEIPK4f5Z8yxlD62ZFy6imxGGR', '2018-07-31 03:24:57', '2018-07-31 03:24:57'),
-(2, 'Tobias A. Jayne', 'toby.jayne@gmail.com', '$2y$10$.k/NrTx3XXYQyqq3903lxuNoLa7KZLxMec9ZXm7ILOo2cuW8EZ/IO', '1lC1Ur7yqDGWiqR8yENi0GfJqR86lXSaaPDdgamLZSLb91NgkOrSaRbNQ3FC', '2018-08-14 21:56:21', '2018-08-14 21:56:21');
+INSERT INTO `users` (`id`, `name`, `firstname`, `middleinitial`, `lastname`, `email`, `password`, `gender`, `userrole`, `eventmonitor`, `age`, `address1`, `address2`, `cityid`, `zip`, `regionid`, `countryid`, `remember_token`, `created_at`, `updated_at`, `deleted_at`, `stprovid`) VALUES
+(1, 'name', '', '', '', 'gmail@gmail.com', '$2y$10$OVai35V8ZwHVwhMgG0H97.Ga60cx32qDedLClFaPqhy0XUqbkttOe', '', '', '', 0, '', 0, 0, 0, 0, 0, 'IFXY1gZTOctNCryesCJmfh1xJ6LkONLvn7cEIPK4f5Z8yxlD62ZFy6imxGGR', '2018-07-31 03:24:57', '2018-07-31 03:24:57', '0000-00-00 00:00:00', 0),
+(2, 'Tobias A. Jayne', '', '', '', 'toby.jayne@gmail.com', '$2y$10$.k/NrTx3XXYQyqq3903lxuNoLa7KZLxMec9ZXm7ILOo2cuW8EZ/IO', '', '', '', 0, '', 0, 0, 0, 0, 0, '1lC1Ur7yqDGWiqR8yENi0GfJqR86lXSaaPDdgamLZSLb91NgkOrSaRbNQ3FC', '2018-08-14 21:56:21', '2018-08-14 21:56:21', '0000-00-00 00:00:00', 0),
+(3, 'Test', '', '', '', 'ttes@test.com', '$2y$10$wxPWGKo4D2BVJjlVs44Ndu72ff6A4zJiPWVtENp/n0Ju1FUwlSKJe', '', '', '', 0, '', 0, 0, 0, 0, 0, NULL, '2018-11-26 01:56:58', '2018-11-26 01:56:58', '0000-00-00 00:00:00', 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `country_state_city`
---
-ALTER TABLE `country_state_city`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -3277,19 +3232,6 @@ ALTER TABLE `ptbtevents`
   ADD KEY `PTBTEventTeam2` (`PTBTAwayTeamId`),
   ADD KEY `PTBTWinningTeam` (`PTBTWinningTeamId`),
   ADD KEY `PTBTLosingTeam` (`PTBTLosingTeam`);
-
---
--- Indexes for table `ptbtproduct`
---
-ALTER TABLE `ptbtproduct`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `PTBTProd_Category` (`prod_cat_id`);
-
---
--- Indexes for table `ptbtprod_cat`
---
-ALTER TABLE `ptbtprod_cat`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ptbtregion`
@@ -3351,7 +3293,7 @@ ALTER TABLE `ptbtuserevaluation`
 -- Indexes for table `ptbtvenue`
 --
 ALTER TABLE `ptbtvenue`
-  ADD PRIMARY KEY (`PTBTVenueId`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `IX_Relationship60` (`PTBTCityId`);
 
 --
@@ -3365,12 +3307,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `country_state_city`
---
-ALTER TABLE `country_state_city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -3380,25 +3316,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `ptbtcity`
 --
 ALTER TABLE `ptbtcity`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `ptbtcountry`
 --
 ALTER TABLE `ptbtcountry`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
-
---
--- AUTO_INCREMENT for table `ptbtproduct`
---
-ALTER TABLE `ptbtproduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `ptbtprod_cat`
---
-ALTER TABLE `ptbtprod_cat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ptbtregion`
@@ -3413,10 +3337,16 @@ ALTER TABLE `ptbtstprov`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5860;
 
 --
+-- AUTO_INCREMENT for table `ptbtvenue`
+--
+ALTER TABLE `ptbtvenue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -3435,12 +3365,6 @@ ALTER TABLE `ptbtcity`
 --
 ALTER TABLE `ptbtcountry`
   ADD CONSTRAINT `PTBTRegionCountry` FOREIGN KEY (`PTBTRegionId`) REFERENCES `ptbtregion` (`id`);
-
---
--- Constraints for table `ptbtproduct`
---
-ALTER TABLE `ptbtproduct`
-  ADD CONSTRAINT `PTBTProd_Category` FOREIGN KEY (`prod_cat_id`) REFERENCES `ptbtprod_cat` (`id`);
 
 --
 -- Constraints for table `ptbtstprov`
