@@ -10,6 +10,11 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600"
           rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
+    <link href="{{asset('css/libs.css')}}" rel="stylesheet">
     <style>
         .dropbtn {
             background-color: #4CAF50;
@@ -57,6 +62,12 @@
     <button class="dropbtn">Actions</button>
     <div class="dropdown-content">
         <a href="{{ url('/') }}">Home</a>
+        <a href="{{ url('/admin/cities') }}">List Cities</a>
+        <a href="{{ url('/admin/cities/create') }}">Create City</a>
+        <a href="{{ url('/admin/users') }}">List Users</a>
+        <a href="{{ url('/admin/users/create') }}">Create User</a>
+        <a href="{{ url('/admin/venues') }}">List Venues</a>
+        <a href="{{ url('/admin/venues/create') }}">Create Venue</a>
     </div>
 </div>
 

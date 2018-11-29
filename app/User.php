@@ -15,7 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'firstname', 'middleinitial', 'lastname', 'email', 'password', 'gender', 'userrole', 'age', 'address1',
+        'address2', 'PTBTRegionId', 'PTBTCountryId', 'PTBTStProvId', 'PTBTCityId'
     ];
 
     /**
@@ -26,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function PtbtRole(){
+        return $this->belongsTo('App\PtbtRole');
+
+    }
 }

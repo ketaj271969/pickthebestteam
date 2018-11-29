@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2018 at 10:02 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Nov 29, 2018 at 11:06 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,9 +41,9 @@ CREATE TABLE `migrations` (
 --
 
 CREATE TABLE `ptbtattendance` (
-  `PTBTAttendanceId` int(11) NOT NULL,
-  `PTBTEventId` int(11) NOT NULL,
-  `PTBTUserId` int(11) DEFAULT NULL,
+  `PTBTAttendanceId` int(11) UNSIGNED NOT NULL,
+  `PTBTEventId` int(11) UNSIGNED NOT NULL,
+  `PTBTUserId` int(11) UNSIGNED DEFAULT NULL,
   `PTBTAttendanceTracker` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,20 +69,25 @@ CREATE TABLE `ptbtcity` (
 --
 
 INSERT INTO `ptbtcity` (`id`, `PTBTRegionId`, `PTBTCountryId`, `PTBTStProvId`, `PTBTCity`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(8, 1, 155, 5841, 'Libertyville', '2018-06-10 07:00:00', '2018-11-26 01:52:52', NULL),
-(9, 1, 155, 5841, 'Chicago', '2018-06-10 06:00:00', '2018-11-25 23:43:16', NULL),
-(11, 1, 155, 5841, 'Dundee', '2018-06-13 01:16:47', '2018-11-26 01:52:58', NULL),
-(14, 1, 155, 5841, 'Crystal Lake', '2018-06-14 16:24:07', '2018-11-26 01:53:03', NULL),
-(18, 1, 155, 5841, 'Elizabeth', '2018-07-05 21:51:37', '2018-07-05 21:51:37', NULL),
-(19, 1, 155, 5843, 'Iowa City', '2018-07-10 23:20:43', '2018-11-25 23:43:12', NULL),
-(21, 4, 86, 4292, 'Seeheim-Jugenheim', '2018-07-12 21:09:44', '2018-07-12 21:09:44', NULL),
+(8, 1, 155, 5841, 'Libertyville', '2018-06-10 07:00:00', '2018-11-15 04:08:36', NULL),
+(9, 1, 155, 5841, 'Chicago', '2018-06-10 06:00:00', '2018-11-15 22:38:09', NULL),
+(11, 1, 155, 5841, 'Dundee', '2018-06-13 01:16:47', '2018-11-15 04:08:29', NULL),
+(14, 1, 155, 5841, 'Crystal Lake', '2018-06-14 16:24:07', '2018-11-15 04:08:40', NULL),
+(18, 1, 155, 5841, 'Elizabeth', '2018-07-05 21:51:37', '2018-11-15 04:08:24', NULL),
+(19, 1, 155, 5843, 'Iowa City', '2018-07-10 23:20:43', '2018-11-27 21:09:14', NULL),
 (22, 4, 86, 4295, 'Karlsruhe', '2018-08-14 20:18:42', '2018-08-14 20:18:42', NULL),
 (23, 1, 155, 5843, 'Ames', '2018-08-31 21:14:04', '2018-08-31 21:14:04', NULL),
-(24, 1, 155, 5843, 'Cedar Rapids', '2018-08-31 21:14:33', '2018-11-25 23:43:08', NULL),
+(24, 1, 155, 5843, 'Cedar Rapids', '2018-08-31 21:14:33', '2018-11-15 04:08:44', NULL),
 (25, 1, 155, 5843, 'audubon', '2018-09-09 22:07:06', '2018-09-09 22:07:06', NULL),
 (26, 1, 155, 5843, 'Tama', '2018-09-10 23:44:58', '2018-09-10 23:44:58', NULL),
-(27, 1, 155, 5815, 'Bangor', '2018-11-05 00:02:04', '2018-11-05 00:02:04', NULL),
-(28, 1, 155, 5841, 'East Chicago', '2018-11-25 23:44:57', '2018-11-25 23:44:57', NULL);
+(27, 1, 155, 5810, 'Mobile', '2018-11-20 03:41:02', '2018-11-27 21:07:29', NULL),
+(28, 4, 86, 4292, 'Seeheim-Jugenheim', '2018-11-27 21:09:08', '2018-11-27 21:09:08', NULL),
+(29, 1, 155, 5841, 'Buffalo Grove', '2018-11-29 04:01:51', '2018-11-29 04:01:51', NULL),
+(30, 1, 155, 5843, 'Cedar Rapids', '2018-11-30 02:42:01', '2018-11-30 02:42:01', NULL),
+(31, 1, 155, 5843, 'Iowa City', '2018-11-30 02:42:18', '2018-11-30 02:42:18', NULL),
+(32, 1, 155, 5843, 'Tama', '2018-11-30 02:42:35', '2018-11-30 02:42:35', NULL),
+(33, 1, 155, 5843, 'Waukee', '2018-11-30 02:42:56', '2018-11-30 02:42:56', NULL),
+(34, 1, 155, 5843, 'Des Moines', '2018-11-30 02:43:18', '2018-11-30 02:43:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -233,9 +238,10 @@ INSERT INTO `ptbtcountry` (`id`, `PTBTRegionId`, `PTBTCountryCode`, `PTBTCountry
 --
 
 CREATE TABLE `ptbtevents` (
-  `PTBTEventId` int(11) NOT NULL,
-  `PTBTHomeTeamId` int(11) NOT NULL,
-  `PTBTAwayTeamId` int(11) NOT NULL,
+  `PTBTEventId` int(11) UNSIGNED NOT NULL,
+  `PTBTHomeTeamId` int(11) UNSIGNED NOT NULL,
+  `PTBTAwayTeamId` int(11) UNSIGNED NOT NULL,
+  `PTBTVenueId` int(11) UNSIGNED NOT NULL,
   `PTBTStart` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `PTBTEnd` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `PTBTWinningTeamId` int(11) DEFAULT NULL,
@@ -268,6 +274,30 @@ INSERT INTO `ptbtregion` (`id`, `PTBTRegionCode`, `PTBTRegionName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ptbtrole`
+--
+
+CREATE TABLE `ptbtrole` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ptbtrole`
+--
+
+INSERT INTO `ptbtrole` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'admin', NULL, NULL),
+(2, 'coach', NULL, NULL),
+(3, 'minor', NULL, NULL),
+(4, 'parent', NULL, NULL),
+(5, 'player', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ptbtstprov`
 --
 
@@ -291,7 +321,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3109, 'Victoria', 33, 5, 'AU-VIC'),
 (3110, 'South Australia', 33, 5, 'AU-SA'),
 (3111, 'Brunei', 34, 5, 'BN'),
-(3112, 'Takéo', 35, 5, 'KH-21'),
+(3112, 'TakÃ©o', 35, 5, 'KH-21'),
 (3113, 'Svay Rieng', 35, 5, 'KH-20'),
 (3114, 'Battambang', 35, 5, 'KH-2'),
 (3115, 'Stung Treng', 35, 5, 'KH-19'),
@@ -303,7 +333,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3121, 'Preah Vihear', 35, 5, 'KH-13'),
 (3122, 'Ratanakiri', 35, 5, 'KH-12'),
 (3123, 'Mondulkiri', 35, 5, 'KH-11'),
-(3124, 'Kratié', 35, 5, 'KH-10'),
+(3124, 'KratiÃ©', 35, 5, 'KH-10'),
 (3125, 'Banteay Meanchey', 35, 5, 'KH-1'),
 (3126, 'Koh Kong', 35, 5, 'KH-9'),
 (3127, 'Kandal', 35, 5, 'KH-8'),
@@ -353,7 +383,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3171, 'Cecussi', 37, 5, 'TL-OE'),
 (3172, 'Manatuto', 37, 5, 'TL-MT'),
 (3173, 'Manufahi', 37, 5, 'TL-MF'),
-(3174, 'Liquiçá', 37, 5, 'TL-LI'),
+(3174, 'LiquiÃ§Ã¡', 37, 5, 'TL-LI'),
 (3175, 'Lautem', 37, 5, 'TL-3'),
 (3176, 'Ermera', 37, 5, 'TL-ER'),
 (3177, 'Dili', 37, 5, 'TL-DI'),
@@ -439,32 +469,32 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3257, 'Akita', 42, 5, 'JP-05'),
 (3258, 'Aomori', 42, 5, 'JP-02'),
 (3259, 'Ehime', 42, 5, 'JP-38'),
-(3260, 'Hokkaidô (Hokkaido)', 42, 5, 'JP-01'),
+(3260, 'HokkaidÃ´ (Hokkaido)', 42, 5, 'JP-01'),
 (3261, 'Hukuoka (Fukuoka)', 42, 5, 'JP-40'),
-(3262, 'Hyôgo (Hyogo)', 42, 5, 'JP-28'),
+(3262, 'HyÃ´go (Hyogo)', 42, 5, 'JP-28'),
 (3263, 'Isikawa (Ishikawa)', 42, 5, 'JP-17'),
 (3264, 'Kagawa', 42, 5, 'JP-37'),
 (3265, 'Nagano', 42, 5, 'JP-20'),
 (3266, 'Miyazaki', 42, 5, 'JP-45'),
 (3267, 'Miyagi', 42, 5, 'JP-04'),
 (3268, 'Mie', 42, 5, 'JP-24'),
-(3269, 'Kyôto -Kyoto-', 42, 5, 'JP-26'),
+(3269, 'KyÃ´to -Kyoto-', 42, 5, 'JP-26'),
 (3270, 'Kumamoto', 42, 5, 'JP-43'),
-(3271, 'Koti ! Kôti -Kochi-', 42, 5, 'JP-39'),
+(3271, 'Koti ! KÃ´ti -Kochi-', 42, 5, 'JP-39'),
 (3272, 'Kanagawa', 42, 5, 'JP-14'),
 (3273, 'Kagosima -Kagoshima-', 42, 5, 'JP-46'),
 (3274, 'Saitama', 42, 5, 'JP-11'),
 (3275, 'Saga', 42, 5, 'JP-41'),
-(3276, 'Tasaka ! Ôsaka -Osaka-', 42, 5, 'JP-27'),
+(3276, 'Tasaka ! Ã”saka -Osaka-', 42, 5, 'JP-27'),
 (3277, 'Takinawa', 42, 5, 'JP-47'),
 (3278, 'Takayama', 42, 5, 'JP-33'),
-(3279, 'Takaita ! Ôita -Oita-', 42, 5, 'JP-44'),
+(3279, 'Takaita ! Ã”ita -Oita-', 42, 5, 'JP-44'),
 (3280, 'Niigata', 42, 5, 'JP-15'),
 (3281, 'Nara', 42, 5, 'JP-29'),
 (3282, 'Nagasaki', 42, 5, 'JP-42'),
 (3283, 'Toyama', 42, 5, 'JP-16'),
 (3284, 'Tottori', 42, 5, 'JP-31'),
-(3285, 'Tokyô ! Tôkyô -Tokyo-', 42, 5, 'JP-13'),
+(3285, 'TokyÃ´ ! TÃ´kyÃ´ -Tokyo-', 42, 5, 'JP-13'),
 (3286, 'Tokusima -Tokushima-', 42, 5, 'JP-36'),
 (3287, 'Totigi -Tochigi-', 42, 5, 'JP-09'),
 (3288, 'Tiba -Chiba-', 42, 5, 'JP-12'),
@@ -976,75 +1006,75 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3794, 'sw:Kusini Pemba', 62, 5, 'TZ-10'),
 (3795, 'sw:Kilimanjaro', 62, 5, 'TZ-09'),
 (3796, 'Sanma', 63, 5, 'VU-SAM'),
-(3797, 'Pénama', 63, 5, 'VU-PAM'),
+(3797, 'PÃ©nama', 63, 5, 'VU-PAM'),
 (3798, 'Malampa', 63, 5, 'VU-M5'),
 (3799, 'orba', 63, 5, 'VU-TOB'),
-(3800, 'aféa', 63, 5, 'VU-TAE'),
-(3801, 'Shéfa', 63, 5, 'VU-SEE'),
+(3800, 'afÃ©a', 63, 5, 'VU-TAE'),
+(3801, 'ShÃ©fa', 63, 5, 'VU-SEE'),
 (3802, 'Hau Giang', 64, 5, 'VN-73'),
-(3803, 'Ðak Nông', 64, 5, 'VN-72'),
-(3804, 'Ðien Biên', 64, 5, 'VN-71'),
-(3805, 'Vinh Phúc', 64, 5, 'VN-70'),
-(3806, 'hái Nguyên', 64, 5, 'VN-69'),
-(3807, 'Phú Tho', 64, 5, 'VN-68'),
-(3808, 'Nam Ðinh', 64, 5, 'VN-67'),
-(3809, 'Hung Yên', 64, 5, 'VN-66'),
-(3810, 'ài Gòn', 64, 5, 'VN-65'),
-(3811, 'Hà Noi', 64, 5, 'VN-64'),
-(3812, 'Hà Nam', 64, 5, 'VN-63'),
-(3813, 'Hai Phòng', 64, 5, 'VN-62'),
+(3803, 'Ãak NÃ´ng', 64, 5, 'VN-72'),
+(3804, 'Ãien BiÃªn', 64, 5, 'VN-71'),
+(3805, 'Vinh PhÃºc', 64, 5, 'VN-70'),
+(3806, 'hÃ¡i NguyÃªn', 64, 5, 'VN-69'),
+(3807, 'PhÃº Tho', 64, 5, 'VN-68'),
+(3808, 'Nam Ãinh', 64, 5, 'VN-67'),
+(3809, 'Hung YÃªn', 64, 5, 'VN-66'),
+(3810, 'Ã i GÃ²n', 64, 5, 'VN-65'),
+(3811, 'HÃ  Noi', 64, 5, 'VN-64'),
+(3812, 'HÃ  Nam', 64, 5, 'VN-63'),
+(3813, 'Hai PhÃ²ng', 64, 5, 'VN-62'),
 (3814, 'Hai Duong', 64, 5, 'VN-61'),
-(3815, 'Ðà Nang', 64, 5, 'VN-60'),
-(3816, 'Cà Mau', 64, 5, 'VN-59'),
-(3817, 'Bình Phuoc', 64, 5, 'VN-58'),
-(3818, 'Bình Duong', 64, 5, 'VN-57'),
+(3815, 'ÃÃ  Nang', 64, 5, 'VN-60'),
+(3816, 'CÃ  Mau', 64, 5, 'VN-59'),
+(3817, 'BÃ¬nh Phuoc', 64, 5, 'VN-58'),
+(3818, 'BÃ¬nh Duong', 64, 5, 'VN-57'),
 (3819, 'Bac Ninh', 64, 5, 'VN-56'),
-(3820, 'Bac Liêu', 64, 5, 'VN-55'),
+(3820, 'Bac LiÃªu', 64, 5, 'VN-55'),
 (3821, 'Bac Giang', 64, 5, 'VN-54'),
 (3822, 'Bac Kan', 64, 5, 'VN-53'),
-(3823, 'Sóc Trang', 64, 5, 'VN-52'),
-(3824, 'rà Vinh', 64, 5, 'VN-51'),
+(3823, 'SÃ³c Trang', 64, 5, 'VN-52'),
+(3824, 'rÃ  Vinh', 64, 5, 'VN-51'),
 (3825, 'Ben Tre', 64, 5, 'VN-50'),
 (3826, 'Vinh Long', 64, 5, 'VN-49'),
 (3827, 'Can Tho', 64, 5, 'VN-48'),
-(3828, 'Kiên Giang', 64, 5, 'VN-47'),
+(3828, 'KiÃªn Giang', 64, 5, 'VN-47'),
 (3829, 'ien Giang', 64, 5, 'VN-46'),
-(3830, 'Ðong Tháp', 64, 5, 'VN-45'),
+(3830, 'Ãong ThÃ¡p', 64, 5, 'VN-45'),
 (3831, 'An Giang', 64, 5, 'VN-44'),
-(3832, 'Bà Ria-Vung Tàu', 64, 5, 'VN-43'),
+(3832, 'BÃ  Ria-Vung TÃ u', 64, 5, 'VN-43'),
 (3833, 'Long An', 64, 5, 'VN-41'),
-(3834, 'Bình Thuan', 64, 5, 'VN-40'),
-(3835, 'Ðong Nai', 64, 5, 'VN-39'),
-(3836, '\'ây Ninh', 64, 5, 'VN-37'),
+(3834, 'BÃ¬nh Thuan', 64, 5, 'VN-40'),
+(3835, 'Ãong Nai', 64, 5, 'VN-39'),
+(3836, '\'Ã¢y Ninh', 64, 5, 'VN-37'),
 (3837, 'Ninh Thuan', 64, 5, 'VN-36'),
-(3838, 'Lâm Ðong', 64, 5, 'VN-35'),
-(3839, 'Khánh Hòa', 64, 5, 'VN-34'),
-(3840, 'Ðak Lak', 64, 5, 'VN-33'),
-(3841, 'Phú Yên', 64, 5, 'VN-32'),
-(3842, 'Bình Ðinh', 64, 5, 'VN-31'),
+(3838, 'LÃ¢m Ãong', 64, 5, 'VN-35'),
+(3839, 'KhÃ¡nh HÃ²a', 64, 5, 'VN-34'),
+(3840, 'Ãak Lak', 64, 5, 'VN-33'),
+(3841, 'PhÃº YÃªn', 64, 5, 'VN-32'),
+(3842, 'BÃ¬nh Ãinh', 64, 5, 'VN-31'),
 (3843, 'Gia Lai', 64, 5, 'VN-30'),
-(3844, 'Quang Ngãi', 64, 5, 'VN-29'),
+(3844, 'Quang NgÃ£i', 64, 5, 'VN-29'),
 (3845, 'Kon Tum', 64, 5, 'VN-28'),
 (3846, 'Quang Nam', 64, 5, 'VN-27'),
-(3847, 'hua Thiên-Hue', 64, 5, 'VN-26'),
+(3847, 'hua ThiÃªn-Hue', 64, 5, 'VN-26'),
 (3848, 'Quang Tri', 64, 5, 'VN-25'),
-(3849, 'Quang Bình', 64, 5, 'VN-24'),
-(3850, 'Hà Tinh', 64, 5, 'VN-23'),
+(3849, 'Quang BÃ¬nh', 64, 5, 'VN-24'),
+(3850, 'HÃ  Tinh', 64, 5, 'VN-23'),
 (3851, 'Nghe An', 64, 5, 'VN-22'),
-(3852, '\'hanh Hóa', 64, 5, 'VN-21'),
-(3853, '\'hái Bình', 64, 5, 'VN-20'),
-(3854, 'Ninh Bình', 64, 5, 'VN-18'),
-(3855, 'Hà Tây', 64, 5, 'VN-15'),
-(3856, 'Hòa Bình', 64, 5, 'VN-14'),
+(3852, '\'hanh HÃ³a', 64, 5, 'VN-21'),
+(3853, '\'hÃ¡i BÃ¬nh', 64, 5, 'VN-20'),
+(3854, 'Ninh BÃ¬nh', 64, 5, 'VN-18'),
+(3855, 'HÃ  TÃ¢y', 64, 5, 'VN-15'),
+(3856, 'HÃ²a BÃ¬nh', 64, 5, 'VN-14'),
 (3857, 'Quang Ninh', 64, 5, 'VN-13'),
 (3858, 'Lang Son', 64, 5, 'VN-09'),
-(3859, '\'uyên Quang', 64, 5, 'VN-07'),
-(3860, 'Yên Bái', 64, 5, 'VN-06'),
+(3859, '\'uyÃªn Quang', 64, 5, 'VN-07'),
+(3860, 'YÃªn BÃ¡i', 64, 5, 'VN-06'),
 (3861, '\'on La', 64, 5, 'VN-05'),
 (3862, 'Cao Bang', 64, 5, 'VN-04'),
-(3863, 'Hà Giang', 64, 5, 'VN-03'),
-(3864, 'Lào Cai', 64, 5, 'VN-02'),
-(3865, 'Lai Châu', 64, 5, 'VN-01'),
+(3863, 'HÃ  Giang', 64, 5, 'VN-03'),
+(3864, 'LÃ o Cai', 64, 5, 'VN-02'),
+(3865, 'Lai ChÃ¢u', 64, 5, 'VN-01'),
 (3866, 'Vayoc Jor', 65, 4, 'AM-VD'),
 (3867, 'avus', 65, 4, 'AM-TV'),
 (3868, 'Syunik', 65, 4, 'AM-SU'),
@@ -1103,25 +1133,25 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3921, 'Qabala', 67, 4, 'AZ-QAB'),
 (3922, 'Ordubad', 67, 4, 'AZ-ORD'),
 (3923, 'Oguz Oguz', 67, 4, 'AZ-OGU'),
-(3924, 'Neftçala', 67, 4, 'AZ-NEF'),
+(3924, 'NeftÃ§ala', 67, 4, 'AZ-NEF'),
 (3925, 'Naftalan', 67, 4, 'AZ-NA'),
-(3926, 'Mingeçevir', 67, 4, 'AZ-MI'),
+(3926, 'MingeÃ§evir', 67, 4, 'AZ-MI'),
 (3927, 'Masalli', 67, 4, 'AZ-MAS'),
 (3928, 'Lerik', 67, 4, 'AZ-LER'),
 (3929, 'Lankaran', 67, 4, 'AZ-LAN'),
 (3930, 'Lacin', 67, 4, 'AZ-LAC'),
 (3931, 'Lankaran', 67, 4, 'AZ-LA'),
-(3932, 'Kürd?mir', 67, 4, 'AZ-KUR'),
+(3932, 'KÃ¼rd?mir', 67, 4, 'AZ-KUR'),
 (3933, 'Kalbacar', 67, 4, 'AZ-KAL'),
 (3934, 'Ismayilli', 67, 4, 'AZ-ISM'),
 (3935, 'Imisil Imisli', 67, 4, 'AZ-IMI'),
 (3936, 'Haciqabul', 67, 4, 'AZ-HAC'),
-(3937, 'Göyçay', 67, 4, 'AZ-GOY'),
+(3937, 'GÃ¶yÃ§ay', 67, 4, 'AZ-GOY'),
 (3938, 'Goranboy', 67, 4, 'AZ-GOR'),
 (3939, 'Gadabay', 67, 4, 'AZ-GAD'),
 (3940, 'Ganca', 67, 4, 'AZ-GA'),
-(3941, 'Füzuli', 67, 4, 'AZ-FUZ'),
-(3942, 'Deveçi', 67, 4, 'AZ-DAV'),
+(3941, 'FÃ¼zuli', 67, 4, 'AZ-FUZ'),
+(3942, 'DeveÃ§i', 67, 4, 'AZ-DAV'),
 (3943, 'Daskesen', 67, 4, 'AZ-DAS'),
 (3944, 'Culfa', 67, 4, 'AZ-CUL'),
 (3945, 'Calilabab', 67, 4, 'AZ-CAL'),
@@ -1141,16 +1171,16 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3959, 'Abseron', 67, 4, 'AZ-ABS'),
 (3960, 'Ali Bayramli', 67, 4, 'AZ-AB'),
 (3961, 'Ash Shamaliyah', 68, 4, 'BH-17'),
-(3962, 'Al Wustá', 68, 4, 'BH-16'),
+(3962, 'Al WustÃ¡', 68, 4, 'BH-16'),
 (3963, 'Al Mu arraq', 68, 4, 'BH-15'),
 (3964, 'Al Janubiyah', 68, 4, 'BH-14'),
-(3965, 'Al Manamah (Al ‘Asimah)', 68, 4, 'BH-13'),
+(3965, 'Al Manamah (Al â€˜Asimah)', 68, 4, 'BH-13'),
 (3966, 'Madinat amad', 68, 4, 'BH-12'),
 (3967, 'Mintaqat Juzur awar', 68, 4, 'BH-11'),
 (3968, 'Al Mintaqah al Gharbiyah', 68, 4, 'BH-10'),
-(3969, 'Ar Rifa‘', 68, 4, 'BH-09'),
-(3970, 'Madinat ‘Isá', 68, 4, 'BH-08'),
-(3971, 'Al Mintaqah al Wustá', 68, 4, 'BH-07'),
+(3969, 'Ar Rifaâ€˜', 68, 4, 'BH-09'),
+(3970, 'Madinat â€˜IsÃ¡', 68, 4, 'BH-08'),
+(3971, 'Al Mintaqah al WustÃ¡', 68, 4, 'BH-07'),
 (3972, 'Sitrah', 68, 4, 'BH-06'),
 (3973, 'Al Mintaqah ash Shamaliyah', 68, 4, 'BH-05'),
 (3974, 'Jidd afs', 68, 4, 'BH-04'),
@@ -1166,7 +1196,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (3984, 'Gomel\'skaja', 69, 4, 'BY-HO'),
 (3985, 'Namur', 70, 4, 'BE-W1'),
 (3986, 'Luxembourg', 70, 4, 'BE-WLX'),
-(3987, 'Liege  Liège', 70, 4, 'BE-WLG'),
+(3987, 'Liege  LiÃ¨ge', 70, 4, 'BE-WLG'),
 (3988, 'Hainaut', 70, 4, 'BE-WHT'),
 (3989, 'Brabant Wallon', 70, 4, 'BE-WBR'),
 (3990, 'West-Vlaanderen', 70, 4, 'BE-VWV'),
@@ -1227,7 +1257,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4045, 'Bururi', 73, 4, 'BI-BR'),
 (4046, 'Bujumbura', 73, 4, 'BI-BJ'),
 (4047, 'Bubanza', 73, 4, 'BI-BB'),
-(4048, 'Mohéli', 74, 4, 'KM-M'),
+(4048, 'MohÃ©li', 74, 4, 'KM-M'),
 (4049, 'Grande Comore', 74, 4, 'KM-G'),
 (4050, 'Anjouan', 74, 4, 'KM-A'),
 (4051, 'City of Zagreb', 75, 4, 'HR-21'),
@@ -1236,17 +1266,17 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4054, 'Istria', 75, 4, 'HR-18'),
 (4055, 'Split-Dalmatia', 75, 4, 'HR-17'),
 (4056, 'Vukovar-Srijem', 75, 4, 'HR-16'),
-(4057, 'Šibenik-Knin', 75, 4, 'HR-15'),
+(4057, 'Å ibenik-Knin', 75, 4, 'HR-15'),
 (4058, 'Osijek-Baranja', 75, 4, 'HR-14'),
 (4059, 'Zadar', 75, 4, 'HR-13'),
 (4060, 'Brod-Posavina', 75, 4, 'HR-12'),
-(4061, 'Požega-Slavonia', 75, 4, 'HR-11'),
+(4061, 'PoÅ¾ega-Slavonia', 75, 4, 'HR-11'),
 (4062, 'Virovitica-Podravina', 75, 4, 'HR-10'),
 (4063, 'Lika-Senj', 75, 4, 'HR-09'),
 (4064, 'Primorje-Gorski Kotar', 75, 4, 'HR-08'),
 (4065, 'Bjelovar-Bilogora', 75, 4, 'HR-07'),
-(4066, 'Koprivnica-Križevci', 75, 4, 'HR-06'),
-(4067, 'Varaždin', 75, 4, 'HR-05'),
+(4066, 'Koprivnica-KriÅ¾evci', 75, 4, 'HR-06'),
+(4067, 'VaraÅ¾din', 75, 4, 'HR-05'),
 (4068, 'Karlovac', 75, 4, 'HR-04'),
 (4069, 'Sisak-Moslavina', 75, 4, 'HR-03'),
 (4070, 'Krapina-Zagorje', 75, 4, 'HR-02'),
@@ -1257,20 +1287,20 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4075, 'Larnaka (Larnaka)', 76, 4, 'CY-03'),
 (4076, 'Lemesos (Leymosun)', 76, 4, 'CY-02'),
 (4077, 'Lefkosia (Lefkosa)', 76, 4, 'CY-01'),
-(4078, 'Zlín', 77, 4, 'CZ-ZL'),
+(4078, 'ZlÃ­n', 77, 4, 'CZ-ZL'),
 (4079, 'Vyso?ina', 77, 4, 'CZ-VY'),
-(4080, 'Ústí nad Labem', 77, 4, 'CZ-US'),
+(4080, 'ÃšstÃ­ nad Labem', 77, 4, 'CZ-US'),
 (4081, 'Central Bohemian', 77, 4, 'CZ-ST'),
 (4082, 'Plze?', 77, 4, 'CZ-PL'),
 (4083, 'Pardubice', 77, 4, 'CZ-PA'),
 (4084, 'Olomouc', 77, 4, 'CZ-OL'),
 (4085, 'Moravian-Silesian', 77, 4, 'CZ-MO'),
 (4086, 'Liberec', 77, 4, 'CZ-LI'),
-(4087, 'Hradec Králové', 77, 4, 'CZ-57'),
+(4087, 'Hradec KrÃ¡lovÃ©', 77, 4, 'CZ-57'),
 (4088, 'Karlovy Vary', 77, 4, 'CZ-KA'),
 (4089, 'South Moravian', 77, 4, 'CZ-JM'),
 (4090, 'South Bohemian', 77, 4, 'CZ-JC'),
-(4091, 'jælland (Zealand)', 78, 4, 'DK-8'),
+(4091, 'jÃ¦lland (Zealand)', 78, 4, 'DK-8'),
 (4092, 'Hovedstaden (Capital)', 78, 4, 'DK-84'),
 (4093, 'Syddanmark (South Denmark)', 78, 4, 'DK-83'),
 (4094, 'Midtjylland (Central Jutland)', 78, 4, 'DK-82'),
@@ -1307,22 +1337,22 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4125, 'Asyut', 80, 4, 'EG-AST'),
 (4126, 'Aswan', 80, 4, 'EG-ASN'),
 (4127, 'Al Iskandariyah', 80, 4, 'EG-ALX'),
-(4128, 'Seraye (Särayé)', 81, 4, 'ER-SR'),
-(4129, 'Senhit (Sänhet)', 81, 4, 'ER-SN'),
-(4130, 'Semhar (Sämhar)', 81, 4, 'ER-SM'),
+(4128, 'Seraye (SÃ¤rayÃ©)', 81, 4, 'ER-SR'),
+(4129, 'Senhit (SÃ¤nhet)', 81, 4, 'ER-SN'),
+(4130, 'Semhar (SÃ¤mhar)', 81, 4, 'ER-SM'),
 (4131, 'Semenawi Keyih Bahri (Semien-Keih-Bahri)', 81, 4, 'ER-SK'),
 (4132, 'Sahel', 81, 4, 'ER-SA'),
 (4133, 'Maakel (Maekel)', 81, 4, 'ER-MA'),
-(4134, 'Hamasien (Hamasén)', 81, 4, 'ER-HA'),
+(4134, 'Hamasien (HamasÃ©n)', 81, 4, 'ER-HA'),
 (4135, 'Gash-Setit', 81, 4, 'ER-GS'),
 (4136, 'Gash-Barka', 81, 4, 'ER-GB'),
 (4137, 'Debub', 81, 4, 'ER-DU'),
 (4138, 'Debubawi Keyih Bahri (Debub-Keih-Bahri)', 81, 4, 'ER-DK'),
-(4139, 'Denkalia (Dänkali)', 81, 4, 'ER-DE'),
+(4139, 'Denkalia (DÃ¤nkali)', 81, 4, 'ER-DE'),
 (4140, 'Barka', 81, 4, 'ER-BA'),
-(4141, 'Asmara (Asmära)', 81, 4, 'ER-AS'),
+(4141, 'Asmara (AsmÃ¤ra)', 81, 4, 'ER-AS'),
 (4142, 'Anseba', 81, 4, 'ER-AN'),
-(4143, 'Akele Guzai (Akalä Guzay)', 81, 4, 'ER-AG'),
+(4143, 'Akele Guzai (AkalÃ¤ Guzay)', 81, 4, 'ER-AG'),
 (4144, 'Vorumaa', 82, 4, 'EE-86'),
 (4145, 'Viljandimaa', 82, 4, 'EE-84'),
 (4146, 'Valgamaa', 82, 4, 'EE-82'),
@@ -1343,11 +1373,11 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4161, 'Lapland', 83, 4, 'FI-LL'),
 (4162, 'Eastern Finland', 83, 4, 'FI-IS'),
 (4163, 'Southern Finland', 83, 4, 'FI-ES'),
-(4164, 'Åland Islands', 83, 4, 'FI-AL'),
+(4164, 'Ã…land Islands', 83, 4, 'FI-AL'),
 (4165, 'Orne', 84, 4, 'FR-61'),
 (4166, 'Oise', 84, 4, 'FR-60'),
 (4167, 'Nord', 84, 4, 'FR-59'),
-(4168, 'Nièvre', 84, 4, 'FR-58'),
+(4168, 'NiÃ¨vre', 84, 4, 'FR-58'),
 (4169, 'Moselle', 84, 4, 'FR-57'),
 (4170, 'Morbihan', 84, 4, 'FR-56'),
 (4171, 'Meuse', 84, 4, 'FR-55'),
@@ -1357,7 +1387,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4175, 'Marne', 84, 4, 'FR-51'),
 (4176, 'Manche', 84, 4, 'FR-50'),
 (4177, 'Maine-et-Loire', 84, 4, 'FR-49'),
-(4178, 'Lozère', 84, 4, 'FR-48'),
+(4178, 'LozÃ¨re', 84, 4, 'FR-48'),
 (4179, 'Lot-et-Garonne', 84, 4, 'FR-47'),
 (4180, 'Lot', 84, 4, 'FR-46'),
 (4181, 'Loiret', 84, 4, 'FR-45'),
@@ -1367,39 +1397,39 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4185, 'Loir-et-Cher', 84, 4, 'FR-41'),
 (4186, 'Landes', 84, 4, 'FR-40'),
 (4187, 'Jura', 84, 4, 'FR-39'),
-(4188, 'Isère', 84, 4, 'FR-38'),
+(4188, 'IsÃ¨re', 84, 4, 'FR-38'),
 (4189, 'Indre-et-Loire', 84, 4, 'FR-37'),
 (4190, 'Indre', 84, 4, 'FR-36'),
 (4191, 'Ille-et-Vilaine', 84, 4, 'FR-35'),
-(4192, 'Hérault', 84, 4, 'FR-34'),
+(4192, 'HÃ©rault', 84, 4, 'FR-34'),
 (4193, 'Gironde', 84, 4, 'FR-33'),
 (4194, 'Gers', 84, 4, 'FR-32'),
 (4195, 'Haute-Garonne', 84, 4, 'FR-31'),
 (4196, 'Gard', 84, 4, 'FR-30'),
 (4197, 'Haute-Corse', 84, 4, 'FR-2B'),
 (4198, 'Corse-du-Sud', 84, 4, 'FR-2A'),
-(4199, 'Finistère', 84, 4, 'FR-29'),
+(4199, 'FinistÃ¨re', 84, 4, 'FR-29'),
 (4200, 'Eure-et-Loir', 84, 4, 'FR-28'),
 (4201, 'Eure', 84, 4, 'FR-27'),
-(4202, 'Drôme', 84, 4, 'FR-26'),
+(4202, 'DrÃ´me', 84, 4, 'FR-26'),
 (4203, 'Doubs', 84, 4, 'FR-25'),
 (4204, 'Dordogne', 84, 4, 'FR-24'),
 (4205, 'Creuse', 84, 4, 'FR-23'),
-(4206, 'Côtes-d\'Armor', 84, 4, 'FR-22'),
-(4207, 'Côte-doer', 84, 4, 'FR-21'),
-(4208, 'Corrèze', 84, 4, 'FR-19'),
+(4206, 'CÃ´tes-d\'Armor', 84, 4, 'FR-22'),
+(4207, 'CÃ´te-doer', 84, 4, 'FR-21'),
+(4208, 'CorrÃ¨ze', 84, 4, 'FR-19'),
 (4209, 'Cher', 84, 4, 'FR-18'),
 (4210, 'Charente-Maritime', 84, 4, 'FR-17'),
 (4211, 'Charente', 84, 4, 'FR-16'),
 (4212, 'Cantal', 84, 4, 'FR-15'),
 (4213, 'Calvados', 84, 4, 'FR-14'),
-(4214, 'Bouches-du-Rhône', 84, 4, 'FR-13'),
+(4214, 'Bouches-du-RhÃ´ne', 84, 4, 'FR-13'),
 (4215, 'Aveyron', 84, 4, 'FR-12'),
 (4216, 'Aude', 84, 4, 'FR-11'),
 (4217, 'Aube', 84, 4, 'FR-10'),
-(4218, 'Ariège', 84, 4, 'FR-09'),
+(4218, 'AriÃ¨ge', 84, 4, 'FR-09'),
 (4219, 'Ardennes', 84, 4, 'FR-08'),
-(4220, 'Ardèche', 84, 4, 'FR-07'),
+(4220, 'ArdÃ¨che', 84, 4, 'FR-07'),
 (4221, 'Alpes-Maritimes', 84, 4, 'FR-06'),
 (4222, 'Hautes-Alpes', 84, 4, 'FR-05'),
 (4223, 'Alpes-de-Haute-Provence', 84, 4, 'FR-04'),
@@ -1414,7 +1444,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4232, 'New Caledonia', 84, 4, 'FR-NC'),
 (4233, 'Saint Martin (French part)', 84, 4, 'FR-MF'),
 (4234, 'Clipperton Island', 84, 4, 'FR-CP'),
-(4235, 'Saint Barthélemy', 84, 4, 'FR-BL'),
+(4235, 'Saint BarthÃ©lemy', 84, 4, 'FR-BL'),
 (4236, 'Val-d60ise', 84, 4, 'FR-95'),
 (4237, 'Val-de-Marne', 84, 4, 'FR-94'),
 (4238, 'Seine-Saint-Denis', 84, 4, 'FR-93'),
@@ -1425,13 +1455,13 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4243, 'Vosges', 84, 4, 'FR-88'),
 (4244, 'Haute-Vienne', 84, 4, 'FR-87'),
 (4245, 'Vienne', 84, 4, 'FR-86'),
-(4246, 'Vendée', 84, 4, 'FR-85'),
+(4246, 'VendÃ©e', 84, 4, 'FR-85'),
 (4247, 'Vaucluse', 84, 4, 'FR-84'),
 (4248, 'Var', 84, 4, 'FR-83'),
 (4249, 'Tarn-et-Garonne', 84, 4, 'FR-82'),
 (4250, 'Tarn', 84, 4, 'FR-81'),
 (4251, 'Somme', 84, 4, 'FR-80'),
-(4252, 'Deux-Sèvres', 84, 4, 'FR-79'),
+(4252, 'Deux-SÃ¨vres', 84, 4, 'FR-79'),
 (4253, 'Yvelines', 84, 4, 'FR-78'),
 (4254, 'Seine-et-Marne', 84, 4, 'FR-77'),
 (4255, 'Seine-Maritime', 84, 4, 'FR-76'),
@@ -1439,15 +1469,15 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4257, 'Haute-Savoie', 84, 4, 'FR-74'),
 (4258, 'Savoie', 84, 4, 'FR-73'),
 (4259, 'Sarthe', 84, 4, 'FR-72'),
-(4260, 'Saône-et-Loire', 84, 4, 'FR-71'),
-(4261, 'Haute-Saône', 84, 4, 'FR-70'),
-(4262, 'Rhône', 84, 4, 'FR-69'),
+(4260, 'SaÃ´ne-et-Loire', 84, 4, 'FR-71'),
+(4261, 'Haute-SaÃ´ne', 84, 4, 'FR-70'),
+(4262, 'RhÃ´ne', 84, 4, 'FR-69'),
 (4263, 'Haut-Rhin', 84, 4, 'FR-68'),
 (4264, 'Bas-Rhin', 84, 4, 'FR-67'),
-(4265, 'Pyrénées-Orientales', 84, 4, 'FR-66'),
-(4266, 'Hautes-Pyrénées', 84, 4, 'FR-65'),
-(4267, 'Pyrénées-Atlantiques', 84, 4, 'FR-64'),
-(4268, 'Puy-de-Dôme', 84, 4, 'FR-63'),
+(4265, 'PyrÃ©nÃ©es-Orientales', 84, 4, 'FR-66'),
+(4266, 'Hautes-PyrÃ©nÃ©es', 84, 4, 'FR-65'),
+(4267, 'PyrÃ©nÃ©es-Atlantiques', 84, 4, 'FR-64'),
+(4268, 'Puy-de-DÃ´me', 84, 4, 'FR-63'),
 (4269, 'Pas-de-Calais', 84, 4, 'FR-62'),
 (4270, 'Abkhazia', 85, 4, 'GE-AB'),
 (4271, 'Shida K\'art\'li', 85, 4, 'GE-SK'),
@@ -1474,7 +1504,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4292, 'Hesse', 86, 4, 'DE-HE'),
 (4293, 'Bremen', 86, 4, 'DE-HB'),
 (4294, 'Bavaria', 86, 4, 'DE-BY'),
-(4295, 'Baden-Württemberg', 86, 4, 'DE-BW'),
+(4295, 'Baden-WÃ¼rttemberg', 86, 4, 'DE-BW'),
 (4296, 'Brandenburg', 86, 4, 'DE-BR'),
 (4297, 'Berlin', 86, 4, 'DE-BE'),
 (4298, 'Ashanti', 87, 4, 'GH-AH'),
@@ -1540,47 +1570,47 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4358, 'Boeotia', 88, 4, 'GR-03'),
 (4359, 'Aetolia-Acarnania', 88, 4, 'GR-01'),
 (4360, 'Pest', 89, 4, 'HU-PE'),
-(4361, 'Nyíregyháza', 89, 4, 'HU-NY'),
-(4362, 'Nógrád', 89, 4, 'HU-NO'),
+(4361, 'NyÃ­regyhÃ¡za', 89, 4, 'HU-NY'),
+(4362, 'NÃ³grÃ¡d', 89, 4, 'HU-NO'),
 (4363, 'Nagykanizsa', 89, 4, 'HU-NK'),
 (4364, 'Miskolc', 89, 4, 'HU-MI'),
-(4365, 'Kaposvár', 89, 4, 'HU-KV'),
-(4366, 'Kecskemét', 89, 4, 'HU-KM'),
-(4367, 'Komárom-Esztergom', 89, 4, 'HU-KE'),
-(4368, 'Jász-Nagykun-Szolnok', 89, 4, 'HU-JN'),
-(4369, 'Hódmezovásárhely', 89, 4, 'HU-HV'),
+(4365, 'KaposvÃ¡r', 89, 4, 'HU-KV'),
+(4366, 'KecskemÃ©t', 89, 4, 'HU-KM'),
+(4367, 'KomÃ¡rom-Esztergom', 89, 4, 'HU-KE'),
+(4368, 'JÃ¡sz-Nagykun-Szolnok', 89, 4, 'HU-JN'),
+(4369, 'HÃ³dmezovÃ¡sÃ¡rhely', 89, 4, 'HU-HV'),
 (4370, 'Heves', 89, 4, 'HU-HE'),
-(4371, 'Hajdú-Bihar', 89, 4, 'HU-HB'),
+(4371, 'HajdÃº-Bihar', 89, 4, 'HU-HB'),
 (4372, 'Gyor', 89, 4, 'HU-GY'),
 (4373, 'Gyor-Moson-Sopron', 89, 4, 'HU-GS'),
-(4374, 'Fejér', 89, 4, 'HU-FE'),
+(4374, 'FejÃ©r', 89, 4, 'HU-FE'),
 (4375, 'Eger', 89, 4, 'HU-EG'),
-(4376, 'Dunaújváros', 89, 4, 'HU-DU'),
+(4376, 'DunaÃºjvÃ¡ros', 89, 4, 'HU-DU'),
 (4377, 'Debrecen', 89, 4, 'HU-DE'),
-(4378, 'Csongrád', 89, 4, 'HU-CS'),
-(4379, 'Borsod-Abaúj-Zemplén', 89, 4, 'HU-BZ'),
+(4378, 'CsongrÃ¡d', 89, 4, 'HU-CS'),
+(4379, 'Borsod-AbaÃºj-ZemplÃ©n', 89, 4, 'HU-BZ'),
 (4380, 'Budapest', 89, 4, 'HU-BU'),
-(4381, 'Bács-Kiskun', 89, 4, 'HU-BK'),
-(4382, 'Békés', 89, 4, 'HU-BE'),
-(4383, 'Békéscsaba', 89, 4, 'HU-BC'),
+(4381, 'BÃ¡cs-Kiskun', 89, 4, 'HU-BK'),
+(4382, 'BÃ©kÃ©s', 89, 4, 'HU-BE'),
+(4383, 'BÃ©kÃ©scsaba', 89, 4, 'HU-BC'),
 (4384, 'Baranya', 89, 4, 'HU-BA'),
 (4385, 'Zalaegerszeg', 89, 4, 'HU-ZE'),
 (4386, 'Zala', 89, 4, 'HU-ZA'),
-(4387, 'Veszprém', 89, 4, 'HU-VM'),
-(4388, 'Veszprém', 89, 4, 'HU-VE'),
+(4387, 'VeszprÃ©m', 89, 4, 'HU-VM'),
+(4388, 'VeszprÃ©m', 89, 4, 'HU-VE'),
 (4389, 'Vas', 89, 4, 'HU-VA'),
 (4390, 'Tolna', 89, 4, 'HU-TO'),
-(4391, 'Tatabánya', 89, 4, 'HU-TB'),
-(4392, 'TSzabolcs-Szatmár-Bereg', 89, 4, 'HU-SZ'),
-(4393, 'Salgótarján', 89, 4, 'HU-ST'),
-(4394, 'Szekszárd', 89, 4, 'HU-SS'),
+(4391, 'TatabÃ¡nya', 89, 4, 'HU-TB'),
+(4392, 'TSzabolcs-SzatmÃ¡r-Bereg', 89, 4, 'HU-SZ'),
+(4393, 'SalgÃ³tarjÃ¡n', 89, 4, 'HU-ST'),
+(4394, 'SzekszÃ¡rd', 89, 4, 'HU-SS'),
 (4395, 'Somogy', 89, 4, 'HU-SO'),
 (4396, 'Sopron', 89, 4, 'HU-SN'),
 (4397, 'Szolnok', 89, 4, 'HU-SK'),
 (4398, 'Szombathely', 89, 4, 'HU-SH'),
-(4399, 'Székesfehérvár', 89, 4, 'HU-SF'),
+(4399, 'SzÃ©kesfehÃ©rvÃ¡r', 89, 4, 'HU-SF'),
 (4400, 'Szeged', 89, 4, 'HU-SD'),
-(4401, 'Pécs', 89, 4, 'HU-PS'),
+(4401, 'PÃ©cs', 89, 4, 'HU-PS'),
 (4402, 'Kurdistan', 90, 4, 'IR-16'),
 (4403, 'Kerman', 90, 4, 'IR-15'),
 (4404, 'Fars', 90, 4, 'IR-14'),
@@ -1696,7 +1726,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4513, 'Gorizia', 94, 4, 'IT-GO'),
 (4514, 'Genova (Genoa)', 94, 4, 'IT-GE'),
 (4515, 'Frosinone', 94, 4, 'IT-FR'),
-(4516, 'Forlì-Cesena', 94, 4, 'IT-FO'),
+(4516, 'ForlÃ¬-Cesena', 94, 4, 'IT-FO'),
 (4517, 'Fermo', 94, 4, 'IT-38'),
 (4518, 'Firenze (Florence)', 94, 4, 'IT-FI'),
 (4519, 'Foggia', 94, 4, 'IT-FG'),
@@ -1847,14 +1877,14 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4664, 'Balvu Aprinkis', 99, 4, 'LV-BL'),
 (4665, 'Aluksnes Aprinkis', 99, 4, 'LV-AL'),
 (4666, 'Aizkraukles Aprinkis', 99, 4, 'LV-AI'),
-(4667, 'Nabatîyé', 100, 4, 'LB-1'),
+(4667, 'NabatÃ®yÃ©', 100, 4, 'LB-1'),
 (4668, 'Jabal Libnan (Mount Lebanon)', 100, 4, 'LB-JL'),
 (4669, 'Al-Janub (South)', 100, 4, 'LB-JA'),
-(4670, 'Béqaa', 100, 4, 'LB-BI'),
+(4670, 'BÃ©qaa', 100, 4, 'LB-BI'),
 (4671, 'Baalbek-Hermel', 100, 4, 'LB-BH'),
 (4672, 'Beirut', 100, 4, 'LB-BA'),
 (4673, 'Ash-Shamal (North)', 100, 4, 'LB-AS'),
-(4674, 'Aakkâr', 100, 4, 'LB-AK'),
+(4674, 'AakkÃ¢r', 100, 4, 'LB-AK'),
 (4675, 'Vilniaus Apskritis', 101, 4, 'LT-VL'),
 (4676, 'Utenos Apskritis', 101, 4, 'LT-UT'),
 (4677, 'Telsiu Apskritis', 101, 4, 'LT-TE'),
@@ -1902,7 +1932,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4719, 'Blantyre', 104, 4, 'MW-BL'),
 (4720, 'Balaka', 104, 4, 'MW-BA'),
 (4721, 'Al Haouz', 105, 4, 'MA-HAO'),
-(4722, 'Al Hoceïma', 105, 4, 'MA-HOC'),
+(4722, 'Al HoceÃ¯ma', 105, 4, 'MA-HOC'),
 (4723, 'Assa-Zag', 105, 4, 'MA-ASZ'),
 (4724, 'Azilal', 105, 4, 'MA-AZI'),
 (4725, 'Ben Slimane', 105, 4, 'MA-BES'),
@@ -1954,13 +1984,13 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4771, 'Inezgane-Ait Mellou', 105, 4, 'MA-INE'),
 (4772, 'Marrakech-Medina', 105, 4, 'MA-MMD'),
 (4773, 'Marrakech-Menara', 105, 4, 'MA-MMN'),
-(4774, 'Meknès', 105, 4, 'MA-MEK'),
+(4774, 'MeknÃ¨s', 105, 4, 'MA-MEK'),
 (4775, 'Mohammadia', 105, 4, 'MA-MOH'),
 (4776, 'Oujda-Angad', 105, 4, 'MA-OUJ'),
 (4777, 'Rabat', 105, 4, 'MA-RAB'),
-(4778, 'TSalé', 105, 4, 'MA-SAL'),
+(4778, 'TSalÃ©', 105, 4, 'MA-SAL'),
 (4779, 'TSidi Youssef Ben Al', 105, 4, 'MA-SYB'),
-(4780, 'Tkhirate-Témara', 105, 4, 'MA-S3'),
+(4780, 'Tkhirate-TÃ©mara', 105, 4, 'MA-S3'),
 (4781, 'Tanger-Assilah', 105, 4, 'MA-TNG'),
 (4782, 'Tetouan', 105, 4, 'MA-TET'),
 (4783, 'Otjozondjupa', 106, 4, 'NA-OD'),
@@ -2028,9 +2058,9 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4845, 'Finnmark', 109, 4, 'NO-20'),
 (4846, 'Troms', 109, 4, 'NO-19'),
 (4847, 'Nordland', 109, 4, 'NO-18'),
-(4848, 'Nord-Trøndelag', 109, 4, 'NO-17'),
-(4849, 'Sør-Trøndelag', 109, 4, 'NO-16'),
-(4850, 'Møre og Romsdal', 109, 4, 'NO-15'),
+(4848, 'Nord-TrÃ¸ndelag', 109, 4, 'NO-17'),
+(4849, 'SÃ¸r-TrÃ¸ndelag', 109, 4, 'NO-16'),
+(4850, 'MÃ¸re og Romsdal', 109, 4, 'NO-15'),
 (4851, 'Sogn og Fjordane', 109, 4, 'NO-14'),
 (4852, 'Hordaland', 109, 4, 'NO-12'),
 (4853, 'Rogaland', 109, 4, 'NO-11'),
@@ -2043,13 +2073,13 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4860, 'Hedmark', 109, 4, 'NO-04'),
 (4861, 'Oslo', 109, 4, 'NO-03'),
 (4862, 'Akershus', 109, 4, 'NO-02'),
-(4863, 'Østfold', 109, 4, 'NO-01'),
-(4864, 'Az¸ Z¸ahirah', 110, 4, 'OM-ZA'),
-(4865, 'Al Wustá', 110, 4, 'OM-WU'),
+(4863, 'Ã˜stfold', 109, 4, 'NO-01'),
+(4864, 'AzÂ¸ ZÂ¸ahirah', 110, 4, 'OM-ZA'),
+(4865, 'Al WustÃ¡', 110, 4, 'OM-WU'),
 (4866, 'Ash Sharqiyah', 110, 4, 'OM-SH'),
 (4867, 'Musandam', 110, 4, 'OM-MU'),
 (4868, 'Masqat', 110, 4, 'OM-MA'),
-(4869, 'Al Janubiyah (Z¸ufar)', 110, 4, 'OM-JA'),
+(4869, 'Al Janubiyah (ZÂ¸ufar)', 110, 4, 'OM-JA'),
 (4870, 'Ad Dakhiliyah', 110, 4, 'OM-DA'),
 (4871, 'Al Batinah', 110, 4, 'OM-BA'),
 (4872, 'Federally Administered Tribal Areas', 111, 4, 'PK-TA'),
@@ -2072,29 +2102,29 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4889, 'Masovia (Mazowieckie)', 112, 4, 'PL-MZ'),
 (4890, 'Lesser Poland (Malopolskie)', 112, 4, 'PL-MA'),
 (4891, 'Lubelskie (Lubelskie)', 112, 4, 'PL-LU'),
-(4892, 'Lodz (Lódzkie)', 112, 4, 'PL-LD'),
+(4892, 'Lodz (LÃ³dzkie)', 112, 4, 'PL-LD'),
 (4893, 'Lubusz (Lubuskie)', 112, 4, 'PL-LB'),
 (4894, 'Kuyavia-Pomerania (Kujawsko-Pomorskie)', 112, 4, 'PL-49'),
 (4895, 'Lower Silesia (Dolnoslaskie)', 112, 4, 'PL-DS'),
 (4896, 'Beja', 113, 4, 'PT-02'),
 (4897, 'Aveiro', 113, 4, 'PT-01'),
-(4898, 'Região Autónoma da Madeira', 113, 4, 'PT-30'),
-(4899, 'Região Autónoma dos Açores', 113, 4, 'PT-20'),
+(4898, 'RegiÃ£o AutÃ³noma da Madeira', 113, 4, 'PT-30'),
+(4899, 'RegiÃ£o AutÃ³noma dos AÃ§ores', 113, 4, 'PT-20'),
 (4900, 'Viseu', 113, 4, 'PT-18'),
 (4901, 'Vila Real', 113, 4, 'PT-17'),
 (4902, 'Viana do Castelo', 113, 4, 'PT-16'),
-(4903, 'Tetúbal', 113, 4, 'PT-1'),
-(4904, 'Santarém', 113, 4, 'PT-14'),
+(4903, 'TetÃºbal', 113, 4, 'PT-1'),
+(4904, 'SantarÃ©m', 113, 4, 'PT-14'),
 (4905, 'Porto', 113, 4, 'PT-13'),
 (4906, 'Portalegre', 113, 4, 'PT-12'),
 (4907, 'Lisboa', 113, 4, 'PT-11'),
 (4908, 'Leiria', 113, 4, 'PT-10'),
 (4909, 'Guarda', 113, 4, 'PT-09'),
 (4910, 'Faro', 113, 4, 'PT-08'),
-(4911, 'Évora', 113, 4, 'PT-07'),
+(4911, 'Ã‰vora', 113, 4, 'PT-07'),
 (4912, 'Coimbra', 113, 4, 'PT-06'),
 (4913, 'Castelo Branco', 113, 4, 'PT-05'),
-(4914, 'Bragança', 113, 4, 'PT-04'),
+(4914, 'BraganÃ§a', 113, 4, 'PT-04'),
 (4915, 'Braga', 113, 4, 'PT-03'),
 (4916, 'Al Wakrah', 114, 4, 'QA-WA'),
 (4917, 'Umm Salal', 114, 4, 'QA-US'),
@@ -2133,14 +2163,14 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4950, 'Eastern Cape', 117, 4, 'ZA-EC'),
 (4951, 'Zamora', 118, 4, 'ES-ZA'),
 (4952, 'Zaragoza', 118, 4, 'ES-Z'),
-(4953, 'Álava', 118, 4, 'ES-VI'),
+(4953, 'Ãlava', 118, 4, 'ES-VI'),
 (4954, 'Valladolid', 118, 4, 'ES-VA'),
 (4955, 'Valencia', 118, 4, 'ES-V'),
 (4956, 'Toledo', 118, 4, 'ES-TO'),
 (4957, 'Santa Cruz De Tenerife', 118, 4, 'ES-TF'),
 (4958, 'Teruel', 118, 4, 'ES-TE'),
 (4959, 'Tarragona', 118, 4, 'ES-T'),
-(4960, 'Guipúzcoa', 118, 4, 'ES-SS'),
+(4960, 'GuipÃºzcoa', 118, 4, 'ES-SS'),
 (4961, 'Soria', 118, 4, 'ES-SO'),
 (4962, 'Tegovia', 118, 4, 'ES-5'),
 (4963, 'Seville', 118, 4, 'ES-SE'),
@@ -2154,13 +2184,13 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4971, 'Navarre', 118, 4, 'ES-1'),
 (4972, 'Murcia', 118, 4, 'ES-MU'),
 (4973, 'Melilla', 118, 4, 'ES-ML'),
-(4974, 'Málaga', 118, 4, 'ES-MA'),
+(4974, 'MÃ¡laga', 118, 4, 'ES-MA'),
 (4975, 'Madrid', 118, 4, 'ES-M'),
 (4976, 'Lugo', 118, 4, 'ES-LU'),
 (4977, 'La Rioja', 118, 4, 'ES-LO'),
-(4978, 'León', 118, 4, 'ES-LE'),
+(4978, 'LeÃ³n', 118, 4, 'ES-LE'),
 (4979, 'Lleida', 118, 4, 'ES-L'),
-(4980, 'Jaén', 118, 4, 'ES-J'),
+(4980, 'JaÃ©n', 118, 4, 'ES-J'),
 (4981, 'Huesca', 118, 4, 'ES-HU'),
 (4982, 'Huelva', 118, 4, 'ES-H'),
 (4983, 'Guadalajara', 118, 4, 'ES-GU'),
@@ -2168,19 +2198,19 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (4985, 'Girona', 118, 4, 'ES-GI'),
 (4986, 'Las Palmas', 118, 4, 'ES-GC'),
 (4987, 'Cuenca', 118, 4, 'ES-CU'),
-(4988, 'Castellón', 118, 4, 'ES-CS'),
+(4988, 'CastellÃ³n', 118, 4, 'ES-CS'),
 (4989, 'Ciudad Real', 118, 4, 'ES-CR'),
-(4990, 'Córdoba', 118, 4, 'ES-CO'),
+(4990, 'CÃ³rdoba', 118, 4, 'ES-CO'),
 (4991, 'Ceuta', 118, 4, 'ES-CE'),
-(4992, 'Cáceres', 118, 4, 'ES-CC'),
-(4993, 'Cádiz', 118, 4, 'ES-CA'),
-(4994, 'A Coruña', 118, 4, 'ES-C'),
+(4992, 'CÃ¡ceres', 118, 4, 'ES-CC'),
+(4993, 'CÃ¡diz', 118, 4, 'ES-CA'),
+(4994, 'A CoruÃ±a', 118, 4, 'ES-C'),
 (4995, 'Burgos', 118, 4, 'ES-BU'),
 (4996, 'Biscay', 118, 4, 'ES-BI'),
 (4997, 'Badajoz', 118, 4, 'ES-BA'),
 (4998, 'Barcelona', 118, 4, 'ES-B'),
-(4999, 'Ávila', 118, 4, 'ES-AV'),
-(5000, 'Almería', 118, 4, 'ES-AL'),
+(4999, 'Ãvila', 118, 4, 'ES-AV'),
+(5000, 'AlmerÃ­a', 118, 4, 'ES-AL'),
 (5001, 'Albacete', 118, 4, 'ES-AB'),
 (5002, 'Alicante', 118, 4, 'ES-A'),
 (5003, 'Shiselweni', 119, 4, 'SZ-SH'),
@@ -2204,10 +2234,10 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5021, 'Sughd', 121, 4, 'J-SU'),
 (5022, 'Khatlon', 121, 4, 'J-KT'),
 (5023, 'Gorno-Badakhshan', 121, 4, 'J-GB'),
-(5024, 'Düzce', 122, 4, 'TR-81'),
+(5024, 'DÃ¼zce', 122, 4, 'TR-81'),
 (5025, 'Osmaniye', 122, 4, 'TR-80'),
 (5026, 'Kilis', 122, 4, 'TR-79'),
-(5027, 'Karabük', 122, 4, 'TR-78'),
+(5027, 'KarabÃ¼k', 122, 4, 'TR-78'),
 (5028, 'Yalova', 122, 4, 'TR-77'),
 (5029, 'Igdir', 122, 4, 'TR-76'),
 (5030, 'Ardahan', 122, 4, 'TR-75'),
@@ -2242,7 +2272,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5059, 'Kahramanmaras', 122, 4, 'TR-46'),
 (5060, 'Manisa', 122, 4, 'TR-45'),
 (5061, 'Malatya', 122, 4, 'TR-44'),
-(5062, 'Kütahya', 122, 4, 'TR-43'),
+(5062, 'KÃ¼tahya', 122, 4, 'TR-43'),
 (5063, 'Konya', 122, 4, 'TR-42'),
 (5064, 'Kocaeli', 122, 4, 'TR-41'),
 (5065, 'Kirsehir', 122, 4, 'TR-40'),
@@ -2256,7 +2286,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5073, 'Isparta', 122, 4, 'TR-32'),
 (5074, 'Hatay', 122, 4, 'TR-31'),
 (5075, 'Hakkari', 122, 4, 'TR-30'),
-(5076, 'Gümüshane', 122, 4, 'TR-29'),
+(5076, 'GÃ¼mÃ¼shane', 122, 4, 'TR-29'),
 (5077, 'Giresun', 122, 4, 'TR-28'),
 (5078, 'Gaziantep', 122, 4, 'TR-27'),
 (5079, 'Eskisehir', 122, 4, 'TR-26'),
@@ -2266,14 +2296,14 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5083, 'Edirne', 122, 4, 'TR-22'),
 (5084, 'Diyarbakir', 122, 4, 'TR-21'),
 (5085, 'Denizli', 122, 4, 'TR-20'),
-(5086, 'Çorum', 122, 4, 'TR-19'),
-(5087, 'Çankiri', 122, 4, 'TR-18'),
-(5088, 'Çanakkale', 122, 4, 'TR-17'),
+(5086, 'Ã‡orum', 122, 4, 'TR-19'),
+(5087, 'Ã‡ankiri', 122, 4, 'TR-18'),
+(5088, 'Ã‡anakkale', 122, 4, 'TR-17'),
 (5089, 'Bursa', 122, 4, 'TR-16'),
 (5090, 'Burdur', 122, 4, 'TR-15'),
 (5091, 'Bolu', 122, 4, 'TR-14'),
 (5092, 'Bitlis', 122, 4, 'TR-13'),
-(5093, 'Bingöl', 122, 4, 'TR-12'),
+(5093, 'BingÃ¶l', 122, 4, 'TR-12'),
 (5094, 'Bilecik', 122, 4, 'TR-11'),
 (5095, 'Balikesir', 122, 4, 'TR-10'),
 (5096, 'Aydin', 122, 4, 'TR-09'),
@@ -2314,7 +2344,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5131, 'Vinnytska oblast', 123, 4, 'UA-05'),
 (5132, 'Umm al Qaywayn', 124, 4, 'AE-UQ'),
 (5133, 'Sharjah', 124, 4, 'AE-SH'),
-(5134, 'Ra’s al Khaymah', 124, 4, 'AE-RK'),
+(5134, 'Raâ€™s al Khaymah', 124, 4, 'AE-RK'),
 (5135, 'Al Fujayrah', 124, 4, 'AE-FU'),
 (5136, 'Dubai', 124, 4, 'AE-DU'),
 (5137, 'Abu Dhabi', 124, 4, 'AE-AZ'),
@@ -2552,7 +2582,7 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5369, 'Aberdeen', 125, 4, 'GB-ABE'),
 (5370, 'Aberdeenshire Council Area', 125, 4, 'GB-ABD'),
 (5371, 'Ta\'izz', 126, 4, 'YE-TA'),
-(5372, 'Sanaá', 126, 4, 'YE-SN'),
+(5372, 'SanaÃ¡', 126, 4, 'YE-SN'),
 (5373, 'Shabwah', 126, 4, 'YE-SH'),
 (5374, 'Sa\'dah', 126, 4, 'YE-SD'),
 (5375, 'Al Mahwit', 126, 4, 'YE-MW'),
@@ -2582,21 +2612,21 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5399, 'Chaco', 128, 3, 'AR-H'),
 (5400, 'Santiago del Estero', 128, 3, 'AR-G'),
 (5401, 'La Rioja', 128, 3, 'AR-F'),
-(5402, 'Entre Ríos', 128, 3, 'AR-E'),
+(5402, 'Entre RÃ­os', 128, 3, 'AR-E'),
 (5403, 'San Luis', 128, 3, 'AR-D'),
 (5404, 'Capital federal', 128, 3, 'AR-C'),
 (5405, 'Buenos Aires', 128, 3, 'AR-B'),
 (5406, 'Salta', 128, 3, 'AR-A'),
 (5407, 'Santa Cruz', 128, 3, 'AR-Z'),
 (5408, 'Jujuy', 128, 3, 'AR-Y'),
-(5409, 'Cordoba Córdoba', 128, 3, 'AR-X'),
+(5409, 'Cordoba CÃ³rdoba', 128, 3, 'AR-X'),
 (5410, 'Corrientes', 128, 3, 'AR-W'),
 (5411, 'ierra del Fuego', 128, 3, 'AR-V'),
 (5412, 'Chubut', 128, 3, 'AR-U'),
-(5413, 'Tucumán', 128, 3, 'AR-T'),
+(5413, 'TucumÃ¡n', 128, 3, 'AR-T'),
 (5414, 'Santa Fe', 128, 3, 'AR-S'),
-(5415, 'Río Negro', 128, 3, 'AR-R'),
-(5416, 'Neuquén', 128, 3, 'AR-Q'),
+(5415, 'RÃ­o Negro', 128, 3, 'AR-R'),
+(5416, 'NeuquÃ©n', 128, 3, 'AR-Q'),
 (5417, 'Formosa', 128, 3, 'AR-P'),
 (5418, 'Misiones', 128, 3, 'AR-N'),
 (5419, 'Mendoza', 128, 3, 'AR-M'),
@@ -2620,185 +2650,185 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5437, 'Cochabamba', 131, 3, 'BO-C'),
 (5438, 'Beni', 131, 3, 'BO-B'),
 (5439, 'Tocantins', 132, 3, 'BR-TO'),
-(5440, 'São Paulo', 132, 3, 'BR-SP'),
+(5440, 'SÃ£o Paulo', 132, 3, 'BR-SP'),
 (5441, 'Sergipe', 132, 3, 'BR-SE'),
 (5442, 'Santa Catarina', 132, 3, 'BR-SC'),
 (5443, 'Rio Grande do Sul', 132, 3, 'BR-RS'),
 (5444, 'Roraima', 132, 3, 'BR-RR'),
-(5445, 'Rondônia', 132, 3, 'BR-RO'),
+(5445, 'RondÃ´nia', 132, 3, 'BR-RO'),
 (5446, 'Rio Grande do Norte', 132, 3, 'BR-RN'),
 (5447, 'Rio de Janeiro', 132, 3, 'BR-RJ'),
-(5448, 'Paraná', 132, 3, 'BR-PR'),
-(5449, 'Piauí', 132, 3, 'BR-PI'),
+(5448, 'ParanÃ¡', 132, 3, 'BR-PR'),
+(5449, 'PiauÃ­', 132, 3, 'BR-PI'),
 (5450, 'Pernambuco', 132, 3, 'BR-PE'),
-(5451, 'Paraíba', 132, 3, 'BR-PB'),
-(5452, 'Pará', 132, 3, 'BR-PA'),
+(5451, 'ParaÃ­ba', 132, 3, 'BR-PB'),
+(5452, 'ParÃ¡', 132, 3, 'BR-PA'),
 (5453, 'Mato Grosso', 132, 3, 'BR-MT'),
 (5454, 'Mato Grosso do Sul', 132, 3, 'BR-MS'),
 (5455, 'Minas Gerais', 132, 3, 'BR-MG'),
-(5456, 'Maranhão', 132, 3, 'BR-MA'),
-(5457, 'Goiás', 132, 3, 'BR-GO'),
-(5458, 'Espírito Santo', 132, 3, 'BR-ES'),
+(5456, 'MaranhÃ£o', 132, 3, 'BR-MA'),
+(5457, 'GoiÃ¡s', 132, 3, 'BR-GO'),
+(5458, 'EspÃ­rito Santo', 132, 3, 'BR-ES'),
 (5459, 'Distrito Federal', 132, 3, 'BR-DF'),
-(5460, 'Ceará', 132, 3, 'BR-CE'),
+(5460, 'CearÃ¡', 132, 3, 'BR-CE'),
 (5461, 'Bahia', 132, 3, 'BR-BA'),
-(5462, 'Amapá', 132, 3, 'BR-AP'),
+(5462, 'AmapÃ¡', 132, 3, 'BR-AP'),
 (5463, 'Amazonas', 132, 3, 'BR-AM'),
 (5464, 'Alagoas', 132, 3, 'BR-AL'),
 (5465, 'Acre', 132, 3, 'BR-AC'),
-(5466, 'Valparaíso', 133, 3, 'CL-VS'),
-(5467, 'Tarapacá', 133, 3, 'CL-TA'),
-(5468, 'Región Metropolitana de Santiago', 133, 3, 'CL-RM'),
+(5466, 'ValparaÃ­so', 133, 3, 'CL-VS'),
+(5467, 'TarapacÃ¡', 133, 3, 'CL-TA'),
+(5468, 'RegiÃ³n Metropolitana de Santiago', 133, 3, 'CL-RM'),
 (5469, 'Maule', 133, 3, 'CL-ML'),
 (5470, 'Magallanes', 133, 3, 'CL-MA'),
 (5471, 'Los Lagos', 133, 3, 'CL-LL'),
 (5472, 'Libertador General Bernardo O\'Higgins', 133, 3, 'CL-LI'),
 (5473, 'Coquimbo', 133, 3, 'CL-CO'),
-(5474, 'Bío-Bío', 133, 3, 'CL-BI'),
+(5474, 'BÃ­o-BÃ­o', 133, 3, 'CL-BI'),
 (5475, 'Atacama', 133, 3, 'CL-AT'),
-(5476, 'Araucanía', 133, 3, 'CL-AR'),
+(5476, 'AraucanÃ­a', 133, 3, 'CL-AR'),
 (5477, 'Antofagasta', 133, 3, 'CL-AN'),
-(5478, 'Aisén del General Carlos Ibañez del Campo', 133, 3, 'CL-AI'),
+(5478, 'AisÃ©n del General Carlos IbaÃ±ez del Campo', 133, 3, 'CL-AI'),
 (5479, 'Casanare', 134, 3, 'CO-CAS'),
-(5480, 'Caquetá', 134, 3, 'CO-CAQ'),
+(5480, 'CaquetÃ¡', 134, 3, 'CO-CAQ'),
 (5481, 'Caldas', 134, 3, 'CO-CAL'),
-(5482, 'Boyacá', 134, 3, 'CO-BOY'),
-(5483, 'Bolívar', 134, 3, 'CO-BOL'),
-(5484, 'Atlántico', 134, 3, 'CO-A37'),
+(5482, 'BoyacÃ¡', 134, 3, 'CO-BOY'),
+(5483, 'BolÃ­var', 134, 3, 'CO-BOL'),
+(5484, 'AtlÃ¡ntico', 134, 3, 'CO-A37'),
 (5485, 'Arauca', 134, 3, 'CO-ARA'),
 (5486, 'Antioquia', 134, 3, 'CO-ANT'),
 (5487, 'Amazonas', 134, 3, 'CO-AMA'),
 (5488, 'Vichada', 134, 3, 'CO-V41'),
-(5489, 'Vaupés', 134, 3, 'CO-VAU'),
+(5489, 'VaupÃ©s', 134, 3, 'CO-VAU'),
 (5490, 'Valle del Cauca', 134, 3, 'CO-VAC'),
 (5491, 'Tolima', 134, 3, 'CO-TOL'),
 (5492, 'Sucre', 134, 3, 'CO-SUC'),
-(5493, 'Van Andrés', 134, 3, 'CO-SAD'),
+(5493, 'Van AndrÃ©s', 134, 3, 'CO-SAD'),
 (5494, 'Santander', 134, 3, 'CO-SAN'),
 (5495, 'Risaralda', 134, 3, 'CO-RIS'),
-(5496, 'Quindío', 134, 3, 'CO-QUI'),
+(5496, 'QuindÃ­o', 134, 3, 'CO-QUI'),
 (5497, 'Putumayo', 134, 3, 'CO-PUT'),
 (5498, 'Norte de Santander', 134, 3, 'CO-NSA'),
-(5499, 'Nariño', 134, 3, 'CO-NAR'),
+(5499, 'NariÃ±o', 134, 3, 'CO-NAR'),
 (5500, 'Meta', 134, 3, 'CO-MET'),
 (5501, 'Magdalena', 134, 3, 'CO-MAG'),
 (5502, 'La Guajira', 134, 3, 'CO-LAG'),
 (5503, 'Huila', 134, 3, 'CO-HUI'),
 (5504, 'Guaviare', 134, 3, 'CO-GUV'),
-(5505, 'Guainía', 134, 3, 'CO-GUA'),
-(5506, 'Distrito Capital de Bogotá', 134, 3, 'CO-DC'),
+(5505, 'GuainÃ­a', 134, 3, 'CO-GUA'),
+(5506, 'Distrito Capital de BogotÃ¡', 134, 3, 'CO-DC'),
 (5507, 'Cundinamarca', 134, 3, 'CO-CUN'),
-(5508, 'Cordoba Córdoba', 134, 3, 'CO-COR'),
-(5509, 'Chocó', 134, 3, 'CO-CHO'),
+(5508, 'Cordoba CÃ³rdoba', 134, 3, 'CO-COR'),
+(5509, 'ChocÃ³', 134, 3, 'CO-CHO'),
 (5510, 'Cesar', 134, 3, 'CO-CES'),
 (5511, 'Cauca', 134, 3, 'CO-CAU'),
 (5512, 'San Jose', 135, 3, 'CR-SA'),
 (5513, 'Puntarenas', 135, 3, 'CR-PU'),
-(5514, 'Limón', 135, 3, 'CR-LI'),
+(5514, 'LimÃ³n', 135, 3, 'CR-LI'),
 (5515, 'Heredia', 135, 3, 'CR-HE'),
 (5516, 'Guanacaste', 135, 3, 'CR-GU'),
 (5517, 'Cartago', 135, 3, 'CR-CA'),
 (5518, 'Alajuela', 135, 3, 'CR-AL'),
 (5519, 'Isla de la Juventud', 136, 3, 'CU-99'),
-(5520, 'Guantánamo', 136, 3, 'CU-14'),
+(5520, 'GuantÃ¡namo', 136, 3, 'CU-14'),
 (5521, 'Santiago de Cuba', 136, 3, 'CU-13'),
 (5522, 'Granma', 136, 3, 'CU-12'),
-(5523, 'Holguín', 136, 3, 'CU-11'),
+(5523, 'HolguÃ­n', 136, 3, 'CU-11'),
 (5524, 'Las Tunas', 136, 3, 'CU-10'),
-(5525, 'Camagüey', 136, 3, 'CU-09'),
-(5526, 'Ciego de Ávila', 136, 3, 'CU-08'),
-(5527, 'Sancti Spíritus', 136, 3, 'CU-07'),
+(5525, 'CamagÃ¼ey', 136, 3, 'CU-09'),
+(5526, 'Ciego de Ãvila', 136, 3, 'CU-08'),
+(5527, 'Sancti SpÃ­ritus', 136, 3, 'CU-07'),
 (5528, 'Cienfuegos', 136, 3, 'CU-06'),
 (5529, 'Villa Clara', 136, 3, 'CU-05'),
 (5530, 'Matanzas', 136, 3, 'CU-04'),
 (5531, 'Ciudad de La Habana', 136, 3, 'CU-03'),
 (5532, 'La Habana', 136, 3, 'CU-02'),
-(5533, 'Pinar del Río', 136, 3, 'CU-01'),
+(5533, 'Pinar del RÃ­o', 136, 3, 'CU-01'),
 (5534, 'Valverde', 137, 3, 'DO-27'),
-(5535, 'Santiago Rodríguez', 137, 3, 'DO-26'),
+(5535, 'Santiago RodrÃ­guez', 137, 3, 'DO-26'),
 (5536, 'Santiago', 137, 3, 'DO-2'),
-(5537, 'Sanchez Ramirez Sánchez Ramírez', 137, 3, 'DO-24'),
-(5538, 'San Pedro de Macorís', 137, 3, 'DO-23'),
+(5537, 'Sanchez Ramirez SÃ¡nchez RamÃ­rez', 137, 3, 'DO-24'),
+(5538, 'San Pedro de MacorÃ­s', 137, 3, 'DO-23'),
 (5539, 'San Juan', 137, 3, 'DO-22'),
-(5540, 'San Cristóbal', 137, 3, 'DO-21'),
-(5541, 'Samaná', 137, 3, 'DO-20'),
+(5540, 'San CristÃ³bal', 137, 3, 'DO-21'),
+(5541, 'SamanÃ¡', 137, 3, 'DO-20'),
 (5542, 'Salcedo', 137, 3, 'DO-19'),
 (5543, 'Puerto Plata', 137, 3, 'DO-18'),
 (5544, 'Peravia', 137, 3, 'DO-17'),
 (5545, 'Pedernales', 137, 3, 'DO-16'),
 (5546, 'Monte Cristi', 137, 3, 'DO-15'),
-(5547, 'María Trinidad Sánchez', 137, 3, 'DO-14'),
+(5547, 'MarÃ­a Trinidad SÃ¡nchez', 137, 3, 'DO-14'),
 (5548, 'La Vega', 137, 3, 'DO-13'),
 (5549, 'La Romana', 137, 3, 'DO-12'),
 (5550, 'La Altagracia', 137, 3, 'DO-11'),
 (5551, 'Independencia', 137, 3, 'DO-10'),
 (5552, 'Espaillat', 137, 3, 'DO-09'),
 (5553, 'El Seybo (El Seibo)', 137, 3, 'DO-08'),
-(5554, 'La Estrelleta (Elías Piña)', 137, 3, 'DO-07'),
+(5554, 'La Estrelleta (ElÃ­as PiÃ±a)', 137, 3, 'DO-07'),
 (5555, 'Duarte', 137, 3, 'DO-06'),
-(5556, 'Dajabón', 137, 3, 'DO-05'),
+(5556, 'DajabÃ³n', 137, 3, 'DO-05'),
 (5557, 'Barahona', 137, 3, 'DO-04'),
 (5558, 'Bahoruco', 137, 3, 'DO-03'),
 (5559, 'Azua', 137, 3, 'DO-02'),
 (5560, 'Distrito Nacional (Santo Domingo)', 137, 3, 'DO-01'),
 (5561, 'Santo Domingo', 137, 3, 'DO-32'),
-(5562, 'San José de Ocoa', 137, 3, 'DO-31'),
+(5562, 'San JosÃ© de Ocoa', 137, 3, 'DO-31'),
 (5563, 'Hato Mayor', 137, 3, 'DO-30'),
 (5564, 'Monte Plata', 137, 3, 'DO-29'),
-(5565, 'Monseñor Nouel', 137, 3, 'DO-28'),
+(5565, 'MonseÃ±or Nouel', 137, 3, 'DO-28'),
 (5566, 'Zamora-Chinchipe', 138, 3, 'EC-Z'),
 (5567, 'Pastaza', 138, 3, 'EC-Y'),
 (5568, 'Cotopaxi', 138, 3, 'EC-X'),
-(5569, 'Galápagos', 138, 3, 'EC-W'),
-(5570, 'Sucumbíos', 138, 3, 'EC-U'),
+(5569, 'GalÃ¡pagos', 138, 3, 'EC-W'),
+(5570, 'SucumbÃ­os', 138, 3, 'EC-U'),
 (5571, 'Tungurahua', 138, 3, 'EC-T'),
 (5572, 'Morona-Santiago', 138, 3, 'EC-S'),
-(5573, 'Los Ríos', 138, 3, 'EC-R'),
+(5573, 'Los RÃ­os', 138, 3, 'EC-R'),
 (5574, 'Pichincha', 138, 3, 'EC-P'),
 (5575, 'El Oro', 138, 3, 'EC-O'),
 (5576, 'Napo', 138, 3, 'EC-N'),
-(5577, 'Manabí', 138, 3, 'EC-M'),
+(5577, 'ManabÃ­', 138, 3, 'EC-M'),
 (5578, 'Loja', 138, 3, 'EC-L'),
 (5579, 'Imbabura', 138, 3, 'EC-I'),
 (5580, 'Chimborazo', 138, 3, 'EC-H'),
 (5581, 'Guayas', 138, 3, 'EC-G'),
-(5582, 'Cañar', 138, 3, 'EC-F'),
+(5582, 'CaÃ±ar', 138, 3, 'EC-F'),
 (5583, 'Esmeraldas', 138, 3, 'EC-E'),
 (5584, 'Orellana', 138, 3, 'EC-D'),
 (5585, 'Carchi', 138, 3, 'EC-C'),
-(5586, 'Bolívar', 138, 3, 'EC-B'),
+(5586, 'BolÃ­var', 138, 3, 'EC-B'),
 (5587, 'Azuay', 138, 3, 'EC-A'),
-(5588, 'Ahuachapán', 139, 3, 'SV-AH'),
-(5589, 'Cabañas', 139, 3, 'SV-CA'),
-(5590, 'Cuscatlán', 139, 3, 'SV-CU'),
+(5588, 'AhuachapÃ¡n', 139, 3, 'SV-AH'),
+(5589, 'CabaÃ±as', 139, 3, 'SV-CA'),
+(5590, 'CuscatlÃ¡n', 139, 3, 'SV-CU'),
 (5591, 'Chalatenango', 139, 3, 'SV-CH'),
 (5592, 'La Libertad', 139, 3, 'SV-LI'),
 (5593, 'La Paz', 139, 3, 'SV-PA'),
-(5594, 'La Unión', 139, 3, 'SV-UN'),
-(5595, 'Morazán', 139, 3, 'SV-MO'),
+(5594, 'La UniÃ³n', 139, 3, 'SV-UN'),
+(5595, 'MorazÃ¡n', 139, 3, 'SV-MO'),
 (5596, 'San Miguel', 139, 3, 'SV-SM'),
 (5597, 'San Salvador', 139, 3, 'SV-SS'),
 (5598, 'Santa Ana', 139, 3, 'SV-SA'),
 (5599, 'SanVicente', 139, 3, 'SV-SV'),
 (5600, 'Sonsonate', 139, 3, 'SV-SO'),
-(5601, 'Usulután', 139, 3, 'SV-US'),
+(5601, 'UsulutÃ¡n', 139, 3, 'SV-US'),
 (5602, 'French Guiana', 140, 3, 'GF'),
 (5603, 'Quetzaltenango', 141, 3, 'GT-QZ'),
-(5604, 'El Quiché', 141, 3, 'GT-QC'),
+(5604, 'El QuichÃ©', 141, 3, 'GT-QC'),
 (5605, 'El Progreso', 141, 3, 'GT-PR'),
-(5606, 'El Petén', 141, 3, 'GT-PE'),
+(5606, 'El PetÃ©n', 141, 3, 'GT-PE'),
 (5607, 'Jutiapa', 141, 3, 'GT-JU'),
 (5608, 'Jalapa', 141, 3, 'GT-JA'),
 (5609, 'Izabal', 141, 3, 'GT-IZ'),
 (5610, 'Huehuetenango', 141, 3, 'GT-HU'),
 (5611, 'Guatemala', 141, 3, 'GT-GU'),
 (5612, 'Zacapa', 141, 3, 'GT-ZA'),
-(5613, 'Totonicapán', 141, 3, 'GT-TO'),
-(5614, 'Suchitepéquez', 141, 3, 'GT-SU'),
+(5613, 'TotonicapÃ¡n', 141, 3, 'GT-TO'),
+(5614, 'SuchitepÃ©quez', 141, 3, 'GT-SU'),
 (5615, 'Santa Rosa', 141, 3, 'GT-SR'),
-(5616, 'Sololá', 141, 3, 'GT-SO'),
+(5616, 'SololÃ¡', 141, 3, 'GT-SO'),
 (5617, 'San Marcos', 141, 3, 'GT-SM'),
-(5618, 'Sacatepéquez', 141, 3, 'GT-SA'),
+(5618, 'SacatepÃ©quez', 141, 3, 'GT-SA'),
 (5619, 'Retalhuleu', 141, 3, 'GT-RE'),
 (5620, 'Escuintla', 141, 3, 'GT-ES'),
 (5621, 'Chiquimula', 141, 3, 'GT-CQ'),
@@ -2815,22 +2845,22 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5632, 'Artibonite', 142, 3, 'HT-AR'),
 (5633, 'Sud-Est', 142, 3, 'HT-SE'),
 (5634, 'Sud', 142, 3, 'HT-SD'),
-(5635, 'Atlántida', 143, 3, 'HN-AT'),
-(5636, 'Colón', 143, 3, 'HN-CL'),
+(5635, 'AtlÃ¡ntida', 143, 3, 'HN-AT'),
+(5636, 'ColÃ³n', 143, 3, 'HN-CL'),
 (5637, 'Comayagua', 143, 3, 'HN-CM'),
-(5638, 'Copán', 143, 3, 'HN-CP'),
-(5639, 'Cortés', 143, 3, 'HN-CR'),
+(5638, 'CopÃ¡n', 143, 3, 'HN-CP'),
+(5639, 'CortÃ©s', 143, 3, 'HN-CR'),
 (5640, 'Choluteca', 143, 3, 'HN-CH'),
-(5641, 'El Paraíso', 143, 3, 'HN-EP'),
-(5642, 'Francisco Morazán', 143, 3, 'HN-38'),
+(5641, 'El ParaÃ­so', 143, 3, 'HN-EP'),
+(5642, 'Francisco MorazÃ¡n', 143, 3, 'HN-38'),
 (5643, 'Gracias a Dios', 143, 3, 'HN-GD'),
-(5644, 'Intibucá', 143, 3, 'HN-40'),
-(5645, 'Islas de la Bahía', 143, 3, 'HN-IB'),
+(5644, 'IntibucÃ¡', 143, 3, 'HN-40'),
+(5645, 'Islas de la BahÃ­a', 143, 3, 'HN-IB'),
 (5646, 'La Paz', 143, 3, 'HN-LP'),
 (5647, 'Lempira', 143, 3, 'HN-LE'),
 (5648, 'Ocotepeque', 143, 3, 'HN-OC'),
 (5649, 'Olancho', 143, 3, 'HN-OL'),
-(5650, 'Santa Bárbara', 143, 3, 'HN-56'),
+(5650, 'Santa BÃ¡rbara', 143, 3, 'HN-56'),
 (5651, 'Valle', 143, 3, 'HN-VA'),
 (5652, 'Yoro', 143, 3, 'HN-YO'),
 (5653, 'Portland', 144, 3, 'JM-04'),
@@ -2849,23 +2879,23 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5666, 'Saint Andrew', 144, 3, 'JM-02'),
 (5667, 'Aguascalientes / Estado Libre y Soberano de Aguascalientes', 145, 3, 'MX-AGU'),
 (5668, 'Zacatecas Estado / Libre y Soberano de Zacatecas', 145, 3, 'MX-ZAC'),
-(5669, 'Yucatán Estado / Libre y Soberano de Yucatán', 145, 3, 'MX-YUC'),
+(5669, 'YucatÃ¡n Estado / Libre y Soberano de YucatÃ¡n', 145, 3, 'MX-YUC'),
 (5670, 'Veracruz Estado / Libre y Soberano de Veracruz de Ignacio de la Llave', 145, 3, 'MX-VER'),
 (5671, 'laxcala Estado / Libre y Soberano de Tlaxcala', 145, 3, 'MX-T3'),
 (5672, 'Tamaulipas Estado / Libre y Soberano de Tamaulipas', 145, 3, 'MX-TAM'),
 (5673, 'Tabasco Estado / Libre y Soberano de Tabasco', 145, 3, 'MX-TAB'),
 (5674, 'Sonora Estado / Libre y Soberano de Sonora', 145, 3, 'MX-SON'),
-(5675, 'San Luis Potosí Estado / Libre y Soberano de San Luis Potosí', 145, 3, 'MX-SLP'),
+(5675, 'San Luis PotosÃ­ Estado / Libre y Soberano de San Luis PotosÃ­', 145, 3, 'MX-SLP'),
 (5676, 'Sinaloa Estado / Libre y Soberano de Sinaloa', 145, 3, 'MX-S40'),
 (5677, 'Quintana Roo Estado / Libre y Soberano de Quintana Roo', 145, 3, 'MX-ROO'),
-(5678, 'Querétaro Estado / Libre y Soberano de Querétaro', 145, 3, 'MX-QUE'),
+(5678, 'QuerÃ©taro Estado / Libre y Soberano de QuerÃ©taro', 145, 3, 'MX-QUE'),
 (5679, 'Puebla Estado / Libre y Soberano de Puebla', 145, 3, 'MX-PUE'),
 (5680, 'Oaxaca Estado / Libre y Soberano de Oaxaca', 145, 3, 'MX-OAX'),
-(5681, 'Nuevo León Estado / Libre y Soberano de Nuevo León', 145, 3, 'MX-NLE'),
+(5681, 'Nuevo LeÃ³n Estado / Libre y Soberano de Nuevo LeÃ³n', 145, 3, 'MX-NLE'),
 (5682, 'Nayarit Estado / Libre y Soberano de Nayarit', 145, 3, 'MX-NAY'),
 (5683, 'Morelos Estado / Libre y Soberano de Morelos', 145, 3, 'MX-MOR'),
-(5684, 'Michoacán Estado / Libre y Soberano de Michoacán de Ocampo', 145, 3, 'MX-MIC'),
-(5685, 'Mexico State Estado / Libre y Soberano de México', 145, 3, 'MX-MEX'),
+(5684, 'MichoacÃ¡n Estado / Libre y Soberano de MichoacÃ¡n de Ocampo', 145, 3, 'MX-MIC'),
+(5685, 'Mexico State Estado / Libre y Soberano de MÃ©xico', 145, 3, 'MX-MEX'),
 (5686, 'Jalisco Estado / Libre y Soberano de Jalisco', 145, 3, 'MX-JAL'),
 (5687, 'Hidalgo Estado / Libre y Soberano de Hidalgo', 145, 3, 'MX-H41'),
 (5688, 'Guanajuato Estado / Libre y Soberano de Guanajuato', 145, 3, 'MX-GUA'),
@@ -2885,32 +2915,32 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5702, 'RAAN', 146, 3, 'NI-AN'),
 (5703, 'Bocas del Toro', 147, 3, 'PA-1'),
 (5704, 'Veraguas', 147, 3, 'PA-9'),
-(5705, 'Panamá', 147, 3, 'PA-8'),
+(5705, 'PanamÃ¡', 147, 3, 'PA-8'),
 (5706, 'Los Santos', 147, 3, 'PA-7'),
 (5707, 'Herrera', 147, 3, 'PA-6'),
-(5708, 'Darién', 147, 3, 'PA-5'),
-(5709, 'Chiriquí', 147, 3, 'PA-4'),
-(5710, 'Colón', 147, 3, 'PA-3');
+(5708, 'DariÃ©n', 147, 3, 'PA-5'),
+(5709, 'ChiriquÃ­', 147, 3, 'PA-4'),
+(5710, 'ColÃ³n', 147, 3, 'PA-3');
 INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId`, `PTBTStProvCode`) VALUES
-(5711, 'Coclé', 147, 3, 'PA-2'),
+(5711, 'CoclÃ©', 147, 3, 'PA-2'),
 (5712, 'Comarca de San Blas', 147, 3, 'PA-0'),
-(5713, 'Paraguarí', 148, 3, 'PY-9'),
+(5713, 'ParaguarÃ­', 148, 3, 'PY-9'),
 (5714, 'Misiones', 148, 3, 'PY-8'),
-(5715, 'Itapúa', 148, 3, 'PY-7'),
-(5716, 'Caazapá', 148, 3, 'PY-6'),
-(5717, 'Caaguazú', 148, 3, 'PY-5'),
-(5718, 'Guairá', 148, 3, 'PY-4'),
+(5715, 'ItapÃºa', 148, 3, 'PY-7'),
+(5716, 'CaazapÃ¡', 148, 3, 'PY-6'),
+(5717, 'CaaguazÃº', 148, 3, 'PY-5'),
+(5718, 'GuairÃ¡', 148, 3, 'PY-4'),
 (5719, 'Cordillera', 148, 3, 'PY-3'),
 (5720, 'San Pedro', 148, 3, 'PY-2'),
-(5721, 'Boquerón', 148, 3, 'PY-19'),
+(5721, 'BoquerÃ³n', 148, 3, 'PY-19'),
 (5722, 'Alto Paraguay', 148, 3, 'PY-16'),
 (5723, 'Presidente Hayes', 148, 3, 'PY-15'),
-(5724, 'Canindeyú', 148, 3, 'PY-14'),
+(5724, 'CanindeyÃº', 148, 3, 'PY-14'),
 (5725, 'Amambay', 148, 3, 'PY-13'),
-(5726, 'Ñeembucú', 148, 3, 'PY-12'),
+(5726, 'Ã‘eembucÃº', 148, 3, 'PY-12'),
 (5727, 'Central', 148, 3, 'PY-11'),
 (5728, 'Alto Parana', 148, 3, 'PY-10'),
-(5729, 'Concepción', 148, 3, 'PY-1'),
+(5729, 'ConcepciÃ³n', 148, 3, 'PY-1'),
 (5730, 'Amazonas', 149, 3, 'PE-AMA'),
 (5731, 'Moquegua', 149, 3, 'PE-MOQ'),
 (5732, 'Madre de Dios', 149, 3, 'PE-MDD'),
@@ -2918,35 +2948,35 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5734, 'Lima', 149, 3, 'PE-LIM'),
 (5735, 'Lambayeque', 149, 3, 'PE-LAM'),
 (5736, 'La Libertad', 149, 3, 'PE-LAL'),
-(5737, 'Junín', 149, 3, 'PE-JUN'),
+(5737, 'JunÃ­n', 149, 3, 'PE-JUN'),
 (5738, 'Ica', 149, 3, 'PE-ICA'),
 (5739, 'Huancavelica', 149, 3, 'PE-HUV'),
-(5740, 'San Martín', 149, 3, 'PE-SAM'),
+(5740, 'San MartÃ­n', 149, 3, 'PE-SAM'),
 (5741, 'Puno', 149, 3, 'PE-PUN'),
 (5742, 'Piura', 149, 3, 'PE-PIU'),
 (5743, 'Pasco', 149, 3, 'PE-PAS'),
 (5744, 'Ucayali', 149, 3, 'PE-UCA'),
 (5745, 'Tumbes', 149, 3, 'PE-TUM'),
 (5746, 'Tacna', 149, 3, 'PE-TAC'),
-(5747, 'Huánuco', 149, 3, 'PE-HUC'),
+(5747, 'HuÃ¡nuco', 149, 3, 'PE-HUC'),
 (5748, 'Cusco', 149, 3, 'PE-CUS'),
 (5749, 'Callao', 149, 3, 'PE-CAL'),
 (5750, 'Cajamarca', 149, 3, 'PE-CAJ'),
 (5751, 'Ayacocho', 149, 3, 'PE-AYA'),
 (5752, 'Arequipa', 149, 3, 'PE-ARE'),
-(5753, 'Apurímac', 149, 3, 'PE-APU'),
+(5753, 'ApurÃ­mac', 149, 3, 'PE-APU'),
 (5754, 'Ancash', 149, 3, 'PE-ANC'),
 (5755, 'Puerto Rico', 150, 3, 'PR'),
 (5756, 'Saint Martin', 151, 3, 'MF'),
 (5757, 'Treinta y Tres', 152, 3, 'UY-TT'),
-(5758, 'Tacuarembó', 152, 3, 'UY-TA'),
+(5758, 'TacuarembÃ³', 152, 3, 'UY-TA'),
 (5759, 'Soriano', 152, 3, 'UY-SO'),
-(5760, 'San José', 152, 3, 'UY-SJ'),
+(5760, 'San JosÃ©', 152, 3, 'UY-SJ'),
 (5761, 'Salto', 152, 3, 'UY-SA'),
 (5762, 'Rivera', 152, 3, 'UY-RV'),
 (5763, 'Rocha', 152, 3, 'UY-RO'),
-(5764, 'Río Negro', 152, 3, 'UY-RN'),
-(5765, 'Paysandú', 152, 3, 'UY-PA'),
+(5764, 'RÃ­o Negro', 152, 3, 'UY-RN'),
+(5765, 'PaysandÃº', 152, 3, 'UY-PA'),
 (5766, 'Montevideo', 152, 3, 'UY-MO'),
 (5767, 'Maldonado', 152, 3, 'UY-MA'),
 (5768, 'Lavalleja', 152, 3, 'UY-LA'),
@@ -2963,23 +2993,23 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 (5779, 'Zulia', 153, 3, 'VE-V'),
 (5780, 'Yaracuy', 153, 3, 'VE-U'),
 (5781, 'Trujillo', 153, 3, 'VE-T'),
-(5782, 'Táchira', 153, 3, 'VE-S'),
+(5782, 'TÃ¡chira', 153, 3, 'VE-S'),
 (5783, 'TSucre', 153, 3, 'VE-R'),
 (5784, 'Portuguesa', 153, 3, 'VE-P'),
 (5785, 'Nueva Esparta', 153, 3, 'VE-O'),
 (5786, 'Monagas', 153, 3, 'VE-N'),
 (5787, 'Miranda', 153, 3, 'VE-M'),
-(5788, 'Mérida', 153, 3, 'VE-L'),
+(5788, 'MÃ©rida', 153, 3, 'VE-L'),
 (5789, 'Lara', 153, 3, 'VE-K'),
-(5790, 'Guárico', 153, 3, 'VE-J'),
-(5791, 'Falcón', 153, 3, 'VE-I'),
+(5790, 'GuÃ¡rico', 153, 3, 'VE-J'),
+(5791, 'FalcÃ³n', 153, 3, 'VE-I'),
 (5792, 'Cojedes', 153, 3, 'VE-H'),
 (5793, 'Carabobo', 153, 3, 'VE-G'),
 (5794, 'Bolivar', 153, 3, 'VE-F'),
 (5795, 'Barinas', 153, 3, 'VE-E'),
 (5796, 'Aragua', 153, 3, 'VE-D'),
 (5797, 'Apure', 153, 3, 'VE-C'),
-(5798, 'Anzoátegui', 153, 3, 'VE-B'),
+(5798, 'AnzoÃ¡tegui', 153, 3, 'VE-B'),
 (5799, 'Nova Scotia', 154, 1, 'NS'),
 (5800, 'Alberta', 154, 1, 'AB'),
 (5801, 'Saskatchewan', 154, 1, 'SK'),
@@ -3049,10 +3079,13 @@ INSERT INTO `ptbtstprov` (`id`, `PTBTStProvName`, `PTBTCountryId`, `PTBTRegionId
 --
 
 CREATE TABLE `ptbtteam` (
-  `PTBTTeamId` int(11) NOT NULL,
-  `PBTBTeamName` char(40) NOT NULL,
-  `PTBTCoachId` int(11) NOT NULL,
-  `PTBTTeamRank` int(11) DEFAULT NULL
+  `id` int(11) UNSIGNED NOT NULL,
+  `PTBTTeamName` char(40) NOT NULL,
+  `PTBTCoachId` int(11) UNSIGNED NOT NULL,
+  `PTBTTeamRank` int(11) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -3062,13 +3095,13 @@ CREATE TABLE `ptbtteam` (
 --
 
 CREATE TABLE `ptbtteamevaluation` (
-  `PTBTTeamEvalId` int(11) NOT NULL,
+  `Id` int(11) UNSIGNED NOT NULL,
   `PTBTTeamEvalYear` year(4) NOT NULL,
-  `PTBTTeamId` int(11) NOT NULL,
-  `PTBTTeamQuarter` int(11) NOT NULL,
-  `PTBTTeamWeek` int(11) NOT NULL,
+  `PTBTTeamId` int(11) UNSIGNED NOT NULL,
+  `PTBTTeamQuarter` int(11) UNSIGNED NOT NULL,
+  `PTBTTeamWeek` int(11) UNSIGNED NOT NULL,
   `PTBTTeamEvaluation` text NOT NULL,
-  `PTBTTeamCoachId` int(11) DEFAULT NULL
+  `PTBTTeamCoachId` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -3078,34 +3111,9 @@ CREATE TABLE `ptbtteamevaluation` (
 --
 
 CREATE TABLE `ptbtteamplayers` (
-  `PTBTTeamPlayersId` int(11) NOT NULL,
-  `PTBTUserId` int(11) NOT NULL,
-  `PTBTTeamId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ptbtuser`
---
-
-CREATE TABLE `ptbtuser` (
-  `PTBTUserId` int(11) NOT NULL,
-  `PTBTFirstName` char(25) NOT NULL,
-  `PTBTMiddleInit` char(1) DEFAULT NULL,
-  `PTBTSurName` char(25) NOT NULL,
-  `PTBTEmail` char(40) NOT NULL,
-  `PTBTGender` char(1) NOT NULL,
-  `PTBTUserRole` char(1) NOT NULL,
-  `PTBTEventMonitor` char(1) DEFAULT NULL,
-  `PTBTAge` int(11) NOT NULL,
-  `PTBTAddress1` char(20) DEFAULT NULL,
-  `PTBTAddress2` char(20) DEFAULT NULL,
-  `PTBTAddressCity` char(20) DEFAULT NULL,
-  `PTBTZip` char(20) DEFAULT NULL,
-  `PTBTRegionId` int(11) DEFAULT NULL,
-  `PTBTCountryId` int(11) DEFAULT NULL,
-  `PTBTStProvId` int(11) DEFAULT NULL
+  `PTBTTeamPlayersId` int(11) UNSIGNED NOT NULL,
+  `PTBTUserId` int(11) UNSIGNED DEFAULT NULL,
+  `PTBTTeamId` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -3115,12 +3123,12 @@ CREATE TABLE `ptbtuser` (
 --
 
 CREATE TABLE `ptbtuserevaluation` (
-  `PTBTUserEvalId` int(11) NOT NULL,
-  `PTBTUserId` int(11) DEFAULT NULL,
-  `PTBTCoachId` int(11) NOT NULL,
+  `PTBTUserEvalId` int(11) UNSIGNED NOT NULL,
+  `PTBTUserId` int(11) UNSIGNED DEFAULT NULL,
+  `PTBTCoachId` int(11) UNSIGNED NOT NULL,
   `PTBTUserEvalYear` year(4) NOT NULL,
-  `PTBTQuarter` int(11) NOT NULL,
-  `PTBTWeek` int(11) NOT NULL,
+  `PTBTQuarter` int(11) UNSIGNED NOT NULL,
+  `PTBTWeek` int(11) UNSIGNED NOT NULL,
   `PTBTEvaluation` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -3131,11 +3139,11 @@ CREATE TABLE `ptbtuserevaluation` (
 --
 
 CREATE TABLE `ptbtvenue` (
-  `id` int(11) NOT NULL,
-  `PTBTCityId` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `PTBTCityId` int(11) UNSIGNED NOT NULL,
   `PTBTVenueName` varchar(30) NOT NULL,
-  `PTBTAddress` char(20) DEFAULT NULL,
-  `PTBTZip` int(11) DEFAULT NULL,
+  `PTBTAddress` varchar(255) DEFAULT NULL,
+  `PTBTZip` int(11) UNSIGNED DEFAULT NULL,
   `PTBTLocationNote` text,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -3147,7 +3155,10 @@ CREATE TABLE `ptbtvenue` (
 --
 
 INSERT INTO `ptbtvenue` (`id`, `PTBTCityId`, `PTBTVenueName`, `PTBTAddress`, `PTBTZip`, `PTBTLocationNote`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 9, 'Hermosa', 'Sacramento Boulevard', 60622, 'This is a note', '2018-11-22 04:46:19', '2018-11-22 04:46:19', NULL);
+(1, 9, 'Hermosa', 'Sacramento Boulevard', 60622, 'This is a note', '2018-11-22 04:46:19', '2018-11-22 04:46:19', NULL),
+(3, 9, 'Hanson Park', 'Grand', 60639, 'Hanson', '2018-11-22 04:56:37', '2018-11-22 04:56:37', NULL),
+(4, 9, 'Independence Park', '3945 N Springfield', 60618, 'Nice Park', '2018-11-27 21:11:34', '2018-11-27 21:11:34', NULL),
+(5, 9, 'Kilbourn Park', '3501 N Kilbourn Ave', 60641, 'Another Nice Park', '2018-11-27 21:13:39', '2018-11-27 21:13:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -3156,38 +3167,37 @@ INSERT INTO `ptbtvenue` (`id`, `PTBTCityId`, `PTBTVenueName`, `PTBTAddress`, `PT
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `middleinitial` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userrole` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `eventmonitor` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `age` int(3) NOT NULL,
-  `address1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address2` int(11) NOT NULL,
-  `cityid` int(11) NOT NULL,
-  `zip` int(5) NOT NULL,
-  `regionid` int(11) NOT NULL,
-  `countryid` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `middleinitial` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PTBTRole` int(11) UNSIGNED DEFAULT NULL,
+  `eventmonitor` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age` int(3) DEFAULT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PTBTCityId` int(11) UNSIGNED DEFAULT NULL,
+  `zip` int(5) DEFAULT NULL,
+  `PTBTRegionId` int(11) UNSIGNED DEFAULT NULL,
+  `PTBTCountryId` int(11) UNSIGNED DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `stprovid` int(11) NOT NULL
+  `PTBTStProvId` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `firstname`, `middleinitial`, `lastname`, `email`, `password`, `gender`, `userrole`, `eventmonitor`, `age`, `address1`, `address2`, `cityid`, `zip`, `regionid`, `countryid`, `remember_token`, `created_at`, `updated_at`, `deleted_at`, `stprovid`) VALUES
-(1, 'name', '', '', '', 'gmail@gmail.com', '$2y$10$OVai35V8ZwHVwhMgG0H97.Ga60cx32qDedLClFaPqhy0XUqbkttOe', '', '', '', 0, '', 0, 0, 0, 0, 0, 'IFXY1gZTOctNCryesCJmfh1xJ6LkONLvn7cEIPK4f5Z8yxlD62ZFy6imxGGR', '2018-07-31 03:24:57', '2018-07-31 03:24:57', '0000-00-00 00:00:00', 0),
-(2, 'Tobias A. Jayne', '', '', '', 'toby.jayne@gmail.com', '$2y$10$.k/NrTx3XXYQyqq3903lxuNoLa7KZLxMec9ZXm7ILOo2cuW8EZ/IO', '', '', '', 0, '', 0, 0, 0, 0, 0, '1lC1Ur7yqDGWiqR8yENi0GfJqR86lXSaaPDdgamLZSLb91NgkOrSaRbNQ3FC', '2018-08-14 21:56:21', '2018-08-14 21:56:21', '0000-00-00 00:00:00', 0),
-(3, 'Test', '', '', '', 'ttes@test.com', '$2y$10$wxPWGKo4D2BVJjlVs44Ndu72ff6A4zJiPWVtENp/n0Ju1FUwlSKJe', '', '', '', 0, '', 0, 0, 0, 0, 0, NULL, '2018-11-26 01:56:58', '2018-11-26 01:56:58', '0000-00-00 00:00:00', 0);
+INSERT INTO `users` (`id`, `name`, `firstname`, `middleinitial`, `lastname`, `email`, `password`, `gender`, `PTBTRole`, `eventmonitor`, `age`, `address1`, `address2`, `PTBTCityId`, `zip`, `PTBTRegionId`, `PTBTCountryId`, `remember_token`, `created_at`, `updated_at`, `deleted_at`, `PTBTStProvId`) VALUES
+(1, 'Tobias A. Jayne', 'Tobias', 'A', 'Jayne', 'toby.jayne@gmail.com', '$2y$10$.k/NrTx3XXYQyqq3903lxuNoLa7KZLxMec9ZXm7ILOo2cuW8EZ/IO', 'M', 1, 'Y', 49, '2281 Avalon Dr', '22', 29, 60089, 1, 155, '1lC1Ur7yqDGWiqR8yENi0GfJqR86lXSaaPDdgamLZSLb91NgkOrSaRbNQ3FC', '2018-11-29 08:56:21', '2018-11-29 08:56:21', '0000-00-00 00:00:00', 5841),
+(11, 'Chris Connelly', 'Chris', 'S', 'Connelly', 'Chris.Connelly@gmail.com', '$2y$10$PPvL6k1RG/EIssEp/YTTB./uEBod6tJp6k7YiJAv81Vx3g5qmmGDS', 'M', 5, NULL, 33, '456 Sergio Ave', 'Door #3', 9, NULL, 1, 155, NULL, '2018-11-30 02:38:53', '2018-11-30 02:38:53', NULL, 5841);
 
 --
 -- Indexes for dumped tables
@@ -3231,7 +3241,8 @@ ALTER TABLE `ptbtevents`
   ADD KEY `PTBTEventTeam1` (`PTBTHomeTeamId`),
   ADD KEY `PTBTEventTeam2` (`PTBTAwayTeamId`),
   ADD KEY `PTBTWinningTeam` (`PTBTWinningTeamId`),
-  ADD KEY `PTBTLosingTeam` (`PTBTLosingTeam`);
+  ADD KEY `PTBTLosingTeam` (`PTBTLosingTeam`),
+  ADD KEY `PTBTEventVenue` (`PTBTVenueId`);
 
 --
 -- Indexes for table `ptbtregion`
@@ -3239,6 +3250,12 @@ ALTER TABLE `ptbtevents`
 ALTER TABLE `ptbtregion`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Index1` (`PTBTRegionCode`);
+
+--
+-- Indexes for table `ptbtrole`
+--
+ALTER TABLE `ptbtrole`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ptbtstprov`
@@ -3253,13 +3270,14 @@ ALTER TABLE `ptbtstprov`
 -- Indexes for table `ptbtteam`
 --
 ALTER TABLE `ptbtteam`
-  ADD PRIMARY KEY (`PTBTTeamId`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `PTBTTeamCoach` (`PTBTCoachId`);
 
 --
 -- Indexes for table `ptbtteamevaluation`
 --
 ALTER TABLE `ptbtteamevaluation`
-  ADD PRIMARY KEY (`PTBTTeamEvalId`),
+  ADD PRIMARY KEY (`Id`),
   ADD KEY `PTBTTeamEvalId` (`PTBTTeamId`),
   ADD KEY `PTBTTeamEvalCoachId` (`PTBTTeamCoachId`);
 
@@ -3268,18 +3286,8 @@ ALTER TABLE `ptbtteamevaluation`
 --
 ALTER TABLE `ptbtteamplayers`
   ADD PRIMARY KEY (`PTBTTeamPlayersId`),
-  ADD KEY `PTBTTeamPlayerUserId` (`PTBTUserId`),
-  ADD KEY `PTBTTeamPlayerTeamId` (`PTBTTeamId`);
-
---
--- Indexes for table `ptbtuser`
---
-ALTER TABLE `ptbtuser`
-  ADD PRIMARY KEY (`PTBTUserId`),
-  ADD UNIQUE KEY `PTBTUserIndex` (`PTBTUserId`),
-  ADD KEY `PTBTRegionUser` (`PTBTRegionId`),
-  ADD KEY `PTBTCountryUser` (`PTBTCountryId`),
-  ADD KEY `PTBTStProvUser` (`PTBTStProvId`);
+  ADD KEY `PTBTUserId` (`PTBTUserId`) USING BTREE,
+  ADD KEY `PTBTTeamIdTeam` (`PTBTTeamId`);
 
 --
 -- Indexes for table `ptbtuserevaluation`
@@ -3300,7 +3308,12 @@ ALTER TABLE `ptbtvenue`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `PTBTUserRegion` (`PTBTRegionId`),
+  ADD KEY `PTBTUserCountry` (`PTBTCountryId`),
+  ADD KEY `PTBTUserStProv` (`PTBTStProvId`),
+  ADD KEY `PTBTUserCity` (`PTBTCityId`),
+  ADD KEY `PTBTUserRole` (`PTBTRole`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -3313,10 +3326,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `ptbtattendance`
+--
+ALTER TABLE `ptbtattendance`
+  MODIFY `PTBTAttendanceId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ptbtcity`
 --
 ALTER TABLE `ptbtcity`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `ptbtcountry`
@@ -3331,26 +3350,51 @@ ALTER TABLE `ptbtregion`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `ptbtrole`
+--
+ALTER TABLE `ptbtrole`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `ptbtstprov`
 --
 ALTER TABLE `ptbtstprov`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5860;
 
 --
+-- AUTO_INCREMENT for table `ptbtteam`
+--
+ALTER TABLE `ptbtteam`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ptbtteamevaluation`
+--
+ALTER TABLE `ptbtteamevaluation`
+  MODIFY `Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ptbtvenue`
 --
 ALTER TABLE `ptbtvenue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `ptbtattendance`
+--
+ALTER TABLE `ptbtattendance`
+  ADD CONSTRAINT `PTBTAttendEvent` FOREIGN KEY (`PTBTEventId`) REFERENCES `ptbtevents` (`PTBTEventId`),
+  ADD CONSTRAINT `PTBTAttendUser` FOREIGN KEY (`PTBTUserId`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `ptbtcity`
@@ -3367,6 +3411,14 @@ ALTER TABLE `ptbtcountry`
   ADD CONSTRAINT `PTBTRegionCountry` FOREIGN KEY (`PTBTRegionId`) REFERENCES `ptbtregion` (`id`);
 
 --
+-- Constraints for table `ptbtevents`
+--
+ALTER TABLE `ptbtevents`
+  ADD CONSTRAINT `PTBTAwayTeam` FOREIGN KEY (`PTBTAwayTeamId`) REFERENCES `ptbtteam` (`id`),
+  ADD CONSTRAINT `PTBTEventVenue` FOREIGN KEY (`PTBTVenueId`) REFERENCES `ptbtvenue` (`id`),
+  ADD CONSTRAINT `PTBTHomeTeam` FOREIGN KEY (`PTBTHomeTeamId`) REFERENCES `ptbtteam` (`id`);
+
+--
 -- Constraints for table `ptbtstprov`
 --
 ALTER TABLE `ptbtstprov`
@@ -3374,16 +3426,47 @@ ALTER TABLE `ptbtstprov`
   ADD CONSTRAINT `PTBTStProvRegion` FOREIGN KEY (`PTBTRegionId`) REFERENCES `ptbtregion` (`id`);
 
 --
+-- Constraints for table `ptbtteam`
+--
+ALTER TABLE `ptbtteam`
+  ADD CONSTRAINT `PTBTTeamCoach` FOREIGN KEY (`PTBTCoachId`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `ptbtteamevaluation`
 --
 ALTER TABLE `ptbtteamevaluation`
-  ADD CONSTRAINT `PTBTTeamEval` FOREIGN KEY (`PTBTTeamId`) REFERENCES `ptbtteam` (`PTBTTeamId`);
+  ADD CONSTRAINT `PTBTEvaluation` FOREIGN KEY (`PTBTTeamId`) REFERENCES `ptbtteam` (`id`),
+  ADD CONSTRAINT `PTBTEvaluationCoach` FOREIGN KEY (`PTBTTeamCoachId`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `ptbtteamplayers`
+--
+ALTER TABLE `ptbtteamplayers`
+  ADD CONSTRAINT `PTBTTeamIdTeam` FOREIGN KEY (`PTBTTeamId`) REFERENCES `ptbtteam` (`id`),
+  ADD CONSTRAINT `PTBTUserIdTeam` FOREIGN KEY (`PTBTUserId`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `ptbtuserevaluation`
 --
 ALTER TABLE `ptbtuserevaluation`
-  ADD CONSTRAINT `PTBTUserEvaluationUserId` FOREIGN KEY (`PTBTUserId`) REFERENCES `ptbtuser` (`PTBTUserId`);
+  ADD CONSTRAINT `PTBTEvaluateCoach` FOREIGN KEY (`PTBTCoachId`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `PTBTEvaluateUser` FOREIGN KEY (`PTBTUserId`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `ptbtvenue`
+--
+ALTER TABLE `ptbtvenue`
+  ADD CONSTRAINT `PTBTVenueCity` FOREIGN KEY (`PTBTCityId`) REFERENCES `ptbtcity` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `PTBTUserCity` FOREIGN KEY (`PTBTCityId`) REFERENCES `ptbtcity` (`id`),
+  ADD CONSTRAINT `PTBTUserCountry` FOREIGN KEY (`PTBTCountryId`) REFERENCES `ptbtcountry` (`id`),
+  ADD CONSTRAINT `PTBTUserRegion` FOREIGN KEY (`PTBTregionId`) REFERENCES `ptbtregion` (`id`),
+  ADD CONSTRAINT `PTBTUserRole` FOREIGN KEY (`PTBTRole`) REFERENCES `ptbtrole` (`id`),
+  ADD CONSTRAINT `PTBTUserStProv` FOREIGN KEY (`PTBTStProvId`) REFERENCES `ptbtstprov` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('admin/users', 'AdminUsersController');
 Route::resource('admin/venues', 'AdminVenueController');
 Route::resource('admin/cities', 'AdminCitiesController');
 Route::resource('admin/countries', 'AdminCountriesController');
