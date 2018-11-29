@@ -88,6 +88,11 @@
                     <a href="/admin/venues">Venues</a>
                     <a href="/admin/venues/create">Create Venue</a>
                 </div>
+                <div></div>
+                <div class="links">
+                    <a href="/admin/users">Users</a>
+                    <a href="/admin/users/create">Create User</a>
+                </div>
             </div>
         </div>
     </body>
