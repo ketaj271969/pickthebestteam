@@ -62,6 +62,15 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+			.links a {
+			    display: inline-block;
+			    margin-bottom: 6px;
+			    padding-bottom: 10px;
+			    padding-top: 10px;
+			}
+			.links a:hover {
+			    background: rgba(243, 243, 243, 0.5);
+			}
         </style>
     </head>
     <body>
